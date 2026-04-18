@@ -14,7 +14,7 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 - **CSGO-style spin animation** — decelerating strip GUI that stops on the winner
 - **Reward preview GUI** — paginated view of all rewards with chance percentages
 - **Action system** — `[message]` `[actionbar]` `[title]` `[sound]` `[command]` `[console]` fire on win
-- **HeadDatabase support** — use HDB heads for box items and rewards
+- **HeadDatabase support** — specific heads by ID, random heads by HDB category, or custom search-term pools (e.g. `starwars`, `fantasy`) built from HDB's name/tag data
 - **Custom item support** — base64 snapshot preserves full PDC data (MMOItems, Oraxen, etc.)
 - **PlaceholderAPI** — expose opened-count stats to scoreboards and other plugins
 - **MiniMessage formatting** — gradients, colors, and hover text everywhere
@@ -38,7 +38,8 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 1. Drop `LofiBox.jar` into your `plugins/` folder.
 2. Restart or reload the server.
 3. Edit `plugins/LofiBox/boxes/example.yml` or create your own box files.
-4. Run `/lofibox reload` to apply changes without restarting.
+4. Edit `plugins/LofiBox/head-categories.yml` to define custom HeadDatabase search pools (optional).
+5. Run `/lofibox reload` to apply changes without restarting.
 
 ---
 
@@ -114,6 +115,16 @@ rewards:
     actions:
       - "[title] <dark_purple>EPIC!;<gray>Netherite Ingot"
       - "[console] eco give {player} 1000"
+
+  # Random head from a custom search pool defined in head-categories.yml
+  random_head:
+    weight: 8
+    display-name: "<green>Random Fantasy Head"
+    item:
+      head-database-category: "fantasy"
+      material: PLAYER_HEAD
+    actions:
+      - "[message] <green>You received a random fantasy head!"
 ```
 
 ---
