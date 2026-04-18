@@ -1,0 +1,38 @@
+# LofiBox Messages — MiniMessage formatting throughout.
+prefix: "<gray>[<gradient:#6366f1:#a78bfa>LofiBox</gradient><gray>] "
+
+reload: "<prefix><green>Configuration reloaded."
+no-permission: "<prefix><red>You don't have permission to do that."
+player-only: "<prefix><red>This command can only be run by a player."
+unknown-box: "<prefix><red>Unknown box: <white>{box}<red>."
+unknown-player: "<prefix><red>Player <white>{player}<red> not found."
+player-not-spinning: "<prefix><red>That player is not currently opening a box."
+
+# Box opening
+box-opened: "<prefix><aqua>Opening <white>{box}<aqua>..."
+no-box-in-hand: "<prefix><red>You aren't holding a mystery box."
+already-spinning: "<prefix><red>You are already opening a box!"
+
+# Reward won
+reward-won: "<newline><gradient:#6366f1:#a78bfa>  ✦ Congratulations! ✦</gradient><newline>  <gray>You won <white>{reward}<gray> from <white>{box}<gray>!<newline>"
+
+# Inventory full
+inventory-full: "<prefix><yellow>Your inventory was full — your reward dropped at your feet."
+
+# Give command
+give-success: "<prefix><green>Gave <white>{amount}x {box}<green> to <white>{player}<green>."
+give-received: "<prefix><green>You received <white>{amount}x {box}<green>."
+
+# Stats
+stats-header: "<newline><gradient:#6366f1:#a78bfa>  LofiBox Stats — {player}</gradient>"
+stats-line: "  <gray>{box}: <white>{count} <gray>opened"
+stats-footer: " "
+stats-none: "<prefix><gray>No boxes opened yet."
+
+# List
+list-header: "<newline><gradient:#6366f1:#a78bfa>  Available Boxes</gradient>"
+list-line: "  <gray>- <white>{box} <dark_gray>({id})"
+list-footer: " "
+
+# Preview GUI title
+preview-title: "<dark_purple>Preview: {box}"

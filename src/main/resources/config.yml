@@ -1,0 +1,19 @@
+# LofiMystery Configuration
+
+# What to do when a player's inventory is full when receiving a reward.
+# DROP  - drop the item at the player's feet
+# MAIL  - future: hold for next login (not yet implemented)
+full-inventory-action: DROP
+
+# Whether to show actual weight numbers in the preview GUI.
+# false = show only approximate tier labels (Common / Rare / Epic / Legendary)
+preview-show-weights: true
+
+# Sound played when a player starts opening a box (can be overridden per-box).
+default-open-sound: "block.chest.open"
+
+# Sound played when the spin stops and the winner is revealed.
+default-win-sound: "entity.player.levelup"
+
+# Firework burst on win.
+win-firework: true

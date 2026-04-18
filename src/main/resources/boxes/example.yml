@@ -1,0 +1,107 @@
+# LofiBox — Example box definition.
+# The filename (without .yml) is this box's ID: "example"
+
+name: "<gradient:#f59e0b:#ef4444>Mystery Crate</gradient>"
+
+# The physical item players carry and right-click to open.
+item:
+  material: CHEST
+  name: "<gradient:#f59e0b:#ef4444>✦ Mystery Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open and"
+    - "<gray>discover what's inside!"
+    - ""
+    - "<dark_gray>mystery crate"
+  custom-model-data: 0
+  # Uncomment to use a HeadDatabase head as the box item:
+  # head-database-id: "3337"
+
+sounds:
+  open: "block.chest.open"
+  win: "entity.player.levelup"
+
+rewards:
+
+  # ── Common ────────────────────────────────────────────────────────────────
+  iron_ingots:
+    weight: 50
+    display-name: "<gray>Iron Ingots x16"
+    item:
+      material: IRON_INGOT
+      name: "<gray>Iron Ingots"
+      lore:
+        - "<dark_gray>Common drop"
+      amount: 16
+    actions:
+      - "[message] <gray>You received <white>16x Iron Ingots<gray>!"
+
+  golden_apple:
+    weight: 30
+    display-name: "<yellow>Golden Apple"
+    item:
+      material: GOLDEN_APPLE
+      name: "<yellow>Golden Apple"
+      lore:
+        - "<dark_gray>Uncommon drop"
+    actions:
+      - "[message] <yellow>You received a <gold>Golden Apple<yellow>!"
+      - "[sound] ENTITY_PLAYER_LEVELUP"
+
+  # ── Rare ──────────────────────────────────────────────────────────────────
+  diamond:
+    weight: 15
+    display-name: "<aqua>Diamond"
+    item:
+      material: DIAMOND
+      name: "<aqua>Diamond"
+      lore:
+        - "<dark_gray>Rare drop"
+    actions:
+      - "[message] <aqua>Shiny! You received a <white>Diamond<aqua>!"
+      - "[sound] BLOCK_AMETHYST_BLOCK_CHIME"
+
+  enchanted_book:
+    weight: 10
+    display-name: "<light_purple>Fortune III Book"
+    item:
+      material: ENCHANTED_BOOK
+      name: "<light_purple>Fortune III"
+      lore:
+        - "<dark_gray>Rare drop"
+      enchants:
+        FORTUNE: 3
+    actions:
+      - "[message] <light_purple>You received a <white>Fortune III<light_purple> book!"
+
+  # ── Epic ──────────────────────────────────────────────────────────────────
+  netherite_ingot:
+    weight: 4
+    display-name: "<dark_purple>Netherite Ingot"
+    item:
+      material: NETHERITE_INGOT
+      name: "<dark_purple>Netherite Ingot"
+      lore:
+        - "<dark_gray>Epic drop"
+    actions:
+      - "[message] <dark_purple>EPIC! You received a <white>Netherite Ingot<dark_purple>!"
+      - "[title] <dark_purple>EPIC DROP!;<gray>Netherite Ingot"
+
+  # ── Legendary (permission-gated example) ─────────────────────────────────
+  vip_crate_key:
+    weight: 1
+    display-name: "<gold>✦ VIP Crate Key ✦"
+    # Only players with this permission can win this reward.
+    # Re-rolls for players without it. Use lofibox.bypass to override.
+    permission-required: "lofibox.vip"
+    item:
+      material: TRIPWIRE_HOOK
+      name: "<gold>✦ VIP Crate Key ✦"
+      lore:
+        - "<dark_gray>Legendary drop"
+        - "<yellow>Requires VIP rank"
+      custom-model-data: 0
+    actions:
+      - "[console] lofibox give vip_crate {player} 1"
+      - "[title] <gold>LEGENDARY!;<yellow>VIP Crate Key"
+      - "[message] <gold>✦ You hit the JACKPOT! ✦"

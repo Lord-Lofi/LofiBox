@@ -1,0 +1,37 @@
+name: LofiBox
+version: '${project.version}'
+main: dev.lofibox.LofiBox
+api-version: '1.21'
+description: A configurable mystery box / crate plugin.
+authors: [ Lord-Lofi ]
+
+softdepend:
+  - PlaceholderAPI
+  - HeadDatabase
+  - LuckPerms
+
+commands:
+  lofibox:
+    description: Main LofiBox command.
+    aliases: [ mb, crate, lbox ]
+    usage: /lofibox <open|give|preview|list|stats|reload>
+
+permissions:
+  lofibox.admin:
+    description: Full admin access.
+    default: op
+  lofibox.use:
+    description: Open boxes and view previews.
+    default: true
+  lofibox.give:
+    description: Give box items to players.
+    default: op
+  lofibox.reload:
+    description: Reload configs.
+    default: op
+  lofibox.stats.others:
+    description: View another player's stats.
+    default: op
+  lofibox.bypass:
+    description: Bypass permission-gated rewards.
+    default: op
