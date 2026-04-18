@@ -1,0 +1,49 @@
+# LofiBox Custom Head Categories
+# Define your own named pools backed by HeadDatabase search terms.
+# Terms are matched case-insensitively against each head's name AND tags.
+# Multiple search terms per category are supported — the pool is the union of all matches.
+# Run /lofibox reload to rebuild pools after editing this file.
+#
+# Use head-database-category: "<name>" in any reward's item section to draw from a pool.
+
+categories:
+
+  # Single search term
+  starwars:
+    search: "star wars"
+
+  # Multiple search terms — pool contains heads matching ANY of the terms
+  fantasy:
+    search:
+      - "dragon"
+      - "wizard"
+      - "elf"
+      - "dwarf"
+      - "witch"
+
+  christmas:
+    search:
+      - "christmas"
+      - "santa"
+      - "snowman"
+      - "rudolph"
+
+  space:
+    search:
+      - "astronaut"
+      - "alien"
+      - "rocket"
+      - "planet"
+
+  zombies:
+    search:
+      - "zombie"
+      - "undead"
+
+  food:
+    search:
+      - "burger"
+      - "pizza"
+      - "sushi"
+      - "taco"
+      - "cake"

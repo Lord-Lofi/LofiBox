@@ -39,9 +39,18 @@ public final class BoxReward {
      * different head from the pool. Falls back to the static display item if HDB is not
      * ready or the category returns no results.
      */
+    /**
+     * Lookup order for head-database-category:
+     *   1. Custom category pool (head-categories.yml search terms)
+     *   2. Direct HDB CategoryEnum name (e.g. ANIMALS, MONSTERS)
+     *   3. Static display item fallback
+     */
     public ItemStack getDisplayItem() {
         if (hdbCategory != null) {
-            ItemStack head = LofiBox.getInstance().getHeadDatabaseHook().getRandomHeadByCategory(hdbCategory);
+            LofiBox plugin = LofiBox.getInstance();
+            ItemStack head = plugin.getHeadCategoryManager().getRandomHead(hdbCategory);
+            if (head != null) return head;
+            head = plugin.getHeadDatabaseHook().getRandomHeadByEnum(hdbCategory);
             if (head != null) return head;
         }
         return displayItem.clone();

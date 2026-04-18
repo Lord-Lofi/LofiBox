@@ -88,19 +88,20 @@ rewards:
       - "[title] <dark_purple>EPIC DROP!;<gray>Netherite Ingot"
 
   # ── Random HeadDatabase head ─────────────────────────────────────────────
-  # head-database-category picks a random head from that HDB category each time.
-  # The category name must match exactly as it appears in HeadDatabase.
-  # Falls back to the material field if HeadDatabase is not installed or not ready.
+  # head-database-category can be:
+  #   - A custom category name from head-categories.yml (searched by name/tags)
+  #   - A direct HDB CategoryEnum name: ANIMALS, MONSTERS, FOOD_DRINKS, etc.
+  # Falls back to material if HeadDatabase is not installed or the category is empty.
   random_animal_head:
     weight: 8
     display-name: "<green>Random Animal Head"
     item:
-      head-database-category: "Animals"
-      material: PLAYER_HEAD
+      head-database-category: "animals"   # custom category defined in head-categories.yml
+      material: PLAYER_HEAD               # fallback if HDB unavailable
       name: "<green>Mystery Animal Head"
       lore:
         - "<dark_gray>Uncommon drop"
-        - "<gray>A random animal head from HeadDatabase!"
+        - "<gray>A random animal head!"
     actions:
       - "[message] <green>You received a random animal head!"
 

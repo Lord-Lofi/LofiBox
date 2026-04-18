@@ -4,6 +4,7 @@ import dev.lofibox.box.BoxManager;
 import dev.lofibox.commands.LofiBoxCommand;
 import dev.lofibox.config.ConfigManager;
 import dev.lofibox.config.MessageConfig;
+import dev.lofibox.integration.HeadCategoryManager;
 import dev.lofibox.integration.HeadDatabaseHook;
 import dev.lofibox.listeners.BoxItemListener;
 import dev.lofibox.listeners.MenuListener;
@@ -18,12 +19,13 @@ public final class LofiBox extends JavaPlugin {
 
     private static LofiBox instance;
 
-    private ConfigManager      configManager;
-    private MessageConfig      messageConfig;
-    private BoxManager         boxManager;
-    private StatsManager       statsManager;
-    private ActionRunner       actionRunner;
-    private HeadDatabaseHook   headDatabaseHook;
+    private ConfigManager        configManager;
+    private MessageConfig        messageConfig;
+    private BoxManager           boxManager;
+    private StatsManager         statsManager;
+    private ActionRunner         actionRunner;
+    private HeadDatabaseHook     headDatabaseHook;
+    private HeadCategoryManager  headCategoryManager;
 
     @Override
     public void onEnable() {
@@ -35,7 +37,10 @@ public final class LofiBox extends JavaPlugin {
         statsManager     = new StatsManager(this);
         actionRunner     = new ActionRunner(this);
 
-        headDatabaseHook = new HeadDatabaseHook();
+        headDatabaseHook    = new HeadDatabaseHook();
+        headCategoryManager = new HeadCategoryManager(this);
+        headDatabaseHook.setCategoryManager(headCategoryManager);
+
         PluginManager pm = getServer().getPluginManager();
         if (pm.isPluginEnabled("HeadDatabase")) {
             pm.registerEvents(headDatabaseHook, this);
@@ -73,6 +78,7 @@ public final class LofiBox extends JavaPlugin {
         reloadConfig();
         configManager.reload();
         messageConfig.reload();
+        headCategoryManager.reload();
         boxManager.loadAll();
     }
 
@@ -84,5 +90,6 @@ public final class LofiBox extends JavaPlugin {
     public BoxManager getBoxManager()             { return boxManager; }
     public StatsManager getStatsManager()         { return statsManager; }
     public ActionRunner getActionRunner()         { return actionRunner; }
-    public HeadDatabaseHook getHeadDatabaseHook() { return headDatabaseHook; }
+    public HeadDatabaseHook getHeadDatabaseHook()       { return headDatabaseHook; }
+    public HeadCategoryManager getHeadCategoryManager() { return headCategoryManager; }
 }
