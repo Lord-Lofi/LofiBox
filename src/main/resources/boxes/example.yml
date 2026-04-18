@@ -87,6 +87,23 @@ rewards:
       - "[message] <dark_purple>EPIC! You received a <white>Netherite Ingot<dark_purple>!"
       - "[title] <dark_purple>EPIC DROP!;<gray>Netherite Ingot"
 
+  # ── Random HeadDatabase head ─────────────────────────────────────────────
+  # head-database-category picks a random head from that HDB category each time.
+  # The category name must match exactly as it appears in HeadDatabase.
+  # Falls back to the material field if HeadDatabase is not installed or not ready.
+  random_animal_head:
+    weight: 8
+    display-name: "<green>Random Animal Head"
+    item:
+      head-database-category: "Animals"
+      material: PLAYER_HEAD
+      name: "<green>Mystery Animal Head"
+      lore:
+        - "<dark_gray>Uncommon drop"
+        - "<gray>A random animal head from HeadDatabase!"
+    actions:
+      - "[message] <green>You received a random animal head!"
+
   # ── Legendary (permission-gated example) ─────────────────────────────────
   vip_crate_key:
     weight: 1

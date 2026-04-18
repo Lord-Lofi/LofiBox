@@ -76,10 +76,12 @@ public final class BoxManager {
                 if (sec == null) continue;
                 int weight      = sec.getInt("weight", 10);
                 String name     = sec.getString("display-name", key);
-                String permReq  = sec.getString("permission-required", "");
+                String permReq    = sec.getString("permission-required", "");
                 List<String> actions = sec.getStringList("actions");
-                ItemStack item  = ItemUtil.buildItem(plugin, sec.getConfigurationSection("item"), name);
-                rewards.add(new BoxReward(key, weight, name, item, actions, permReq));
+                var itemSec       = sec.getConfigurationSection("item");
+                String hdbCategory = itemSec != null ? itemSec.getString("head-database-category", "") : "";
+                ItemStack item    = ItemUtil.buildItem(plugin, itemSec, name);
+                rewards.add(new BoxReward(key, weight, name, item, actions, permReq, hdbCategory));
             }
         }
 
