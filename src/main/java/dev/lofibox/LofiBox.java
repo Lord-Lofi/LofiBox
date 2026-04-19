@@ -6,6 +6,7 @@ import dev.lofibox.config.ConfigManager;
 import dev.lofibox.config.MessageConfig;
 import dev.lofibox.integration.HeadCategoryManager;
 import dev.lofibox.integration.HeadDatabaseHook;
+import dev.lofibox.key.KeyManager;
 import dev.lofibox.listeners.BoxItemListener;
 import dev.lofibox.listeners.MenuListener;
 import dev.lofibox.stats.StatsManager;
@@ -26,6 +27,7 @@ public final class LofiBox extends JavaPlugin {
     private ActionRunner         actionRunner;
     private HeadDatabaseHook     headDatabaseHook;
     private HeadCategoryManager  headCategoryManager;
+    private KeyManager           keyManager;
 
     @Override
     public void onEnable() {
@@ -36,6 +38,7 @@ public final class LofiBox extends JavaPlugin {
         messageConfig    = new MessageConfig(this);
         statsManager     = new StatsManager(this);
         actionRunner     = new ActionRunner(this);
+        keyManager       = new KeyManager(this);
 
         headDatabaseHook    = new HeadDatabaseHook();
         headCategoryManager = new HeadCategoryManager(this);
@@ -92,4 +95,5 @@ public final class LofiBox extends JavaPlugin {
     public ActionRunner getActionRunner()         { return actionRunner; }
     public HeadDatabaseHook getHeadDatabaseHook()       { return headDatabaseHook; }
     public HeadCategoryManager getHeadCategoryManager() { return headCategoryManager; }
+    public KeyManager getKeyManager()                   { return keyManager; }
 }
