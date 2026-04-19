@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +109,19 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
             if (!boxId.equals(heldBoxId)) {
                 msg(sender, "no-box-in-hand"); return;
             }
+
+            // Key check
+            if (box.requiresKey()) {
+                if (!plugin.getKeyManager().hasKey(player, box.getRequiredKey())) {
+                    msg(sender, "key-required",
+                        "key", box.getRequiredKey().getDisplayName(),
+                        "box", box.getDisplayName());
+                    return;
+                }
+                plugin.getKeyManager().consumeKey(player, box.getRequiredKey());
+                msg(sender, "key-consumed", "key", box.getRequiredKey().getDisplayName());
+            }
+
             if (item.getAmount() > 1) item.setAmount(item.getAmount() - 1);
             else player.getInventory().setItemInMainHand(null);
         }

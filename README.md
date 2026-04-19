@@ -11,6 +11,7 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 - **YAML-driven crates** — define as many boxes as you want in `plugins/LofiBox/boxes/`
 - **Weighted reward pools** — fine-grained control over drop chances
 - **Permission-gated rewards** — rewards can require a LuckPerms node; re-rolls for ineligible players
+- **7-tier key system** — optional per-box key requirement (Wooden → Netherite); admins bypass automatically
 - **CSGO-style spin animation** — decelerating strip GUI that stops on the winner
 - **Reward preview GUI** — paginated view of all rewards with chance percentages
 - **Action system** — `[message]` `[actionbar]` `[title]` `[sound]` `[command]` `[console]` fire on win
@@ -48,7 +49,8 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 | Command | Permission | Description |
 |---|---|---|
 | `/lofibox give <box> <player> [amount]` | `lofibox.give` | Give a box item to a player |
-| `/lofibox open <box>` | `lofibox.use` | Open a box (admin bypass — no item consumed) |
+| `/lofibox givekey <tier> <player> [amount]` | `lofibox.give` | Give a key item to a player |
+| `/lofibox open <box>` | `lofibox.use` | Open a box (admin bypass — no item or key consumed) |
 | `/lofibox preview <box>` | `lofibox.use` | Preview all rewards and chances |
 | `/lofibox list` | `lofibox.use` | List all loaded boxes |
 | `/lofibox stats [player]` | `lofibox.use` | View open counts |

@@ -93,5 +93,29 @@ public final class KeyManager {
         return getKeyTier(item) != null;
     }
 
+    /** Returns true if the player has at least one key of the given tier in their inventory. */
+    public boolean hasKey(org.bukkit.entity.Player player, KeyTier tier) {
+        for (ItemStack slot : player.getInventory().getContents()) {
+            if (slot == null) continue;
+            if (tier == getKeyTier(slot)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Removes one key of the given tier from the player's inventory.
+     * Returns true if a key was found and consumed, false otherwise.
+     */
+    public boolean consumeKey(org.bukkit.entity.Player player, KeyTier tier) {
+        for (ItemStack slot : player.getInventory().getContents()) {
+            if (slot == null) continue;
+            if (tier != getKeyTier(slot)) continue;
+            if (slot.getAmount() > 1) slot.setAmount(slot.getAmount() - 1);
+            else player.getInventory().remove(slot);
+            return true;
+        }
+        return false;
+    }
+
     public NamespacedKey getKeyTierKey() { return keyTierKey; }
 }

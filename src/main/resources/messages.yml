@@ -13,6 +13,10 @@ box-opened: "<prefix><aqua>Opening <white>{box}<aqua>..."
 no-box-in-hand: "<prefix><red>You aren't holding a mystery box."
 already-spinning: "<prefix><red>You are already opening a box!"
 
+# Key system
+key-required: "<prefix><red>This box requires a <white>{key}<red> to open."
+key-consumed: "<prefix><gray>Your <white>{key}<gray> was consumed."
+
 # Reward won
 reward-won: "<newline><gradient:#6366f1:#a78bfa>  ✦ Congratulations! ✦</gradient><newline>  <gray>You won <white>{reward}<gray> from <white>{box}<gray>!<newline>"
 
