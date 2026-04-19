@@ -12,6 +12,7 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 - **Weighted reward pools** — fine-grained control over drop chances
 - **Permission-gated rewards** — rewards can require a LuckPerms node; re-rolls for ineligible players
 - **7-tier key system** — optional per-box key requirement (Wooden → Netherite); admins bypass automatically
+- **Vault economy cost** — optional per-box open cost charged via any Vault-compatible economy plugin
 - **CSGO-style spin animation** — decelerating strip GUI that stops on the winner
 - **Reward preview GUI** — paginated view of all rewards with chance percentages
 - **Action system** — `[message]` `[actionbar]` `[title]` `[sound]` `[command]` `[console]` fire on win
@@ -31,6 +32,7 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 | PlaceholderAPI | ❌ Optional |
 | HeadDatabase | ❌ Optional |
 | LuckPerms | ❌ Optional (uses standard Bukkit permissions) |
+| Vault + economy plugin | ❌ Optional (required for open-cost) |
 
 ---
 

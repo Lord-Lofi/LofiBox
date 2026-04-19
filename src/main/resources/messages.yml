@@ -17,6 +17,11 @@ already-spinning: "<prefix><red>You are already opening a box!"
 key-required: "<prefix><red>This box requires a <white>{key}<red> to open."
 key-consumed: "<prefix><gray>Your <white>{key}<gray> was consumed."
 
+# Vault cost
+vault-unavailable: "<prefix><red>Economy is not available on this server."
+vault-insufficient-funds: "<prefix><red>You need <white>{cost}<red> to open this box. <dark_gray>(balance: {balance})"
+vault-charged: "<prefix><gray>You were charged <white>{cost}<gray>."
+
 # Reward won
 reward-won: "<newline><gradient:#6366f1:#a78bfa>  ✦ Congratulations! ✦</gradient><newline>  <gray>You won <white>{reward}<gray> from <white>{box}<gray>!<newline>"
 
