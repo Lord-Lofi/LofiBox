@@ -45,3 +45,15 @@ list-footer: " "
 
 # Preview GUI title
 preview-title: "<dark_purple>Preview: {box}"
+
+# Admin editor
+editor-input-prompt: "<prefix><aqua>Chat input required: <white>{prompt}"
+editor-input-cancel: "<prefix><gray>Type <white>cancel<gray> to abort."
+editor-box-id-taken: "<prefix><red>A box with ID '<white>{id}<red>' already exists."
+editor-save-success: "<prefix><green>Box '<white>{box}<green>' saved and reloaded."
+editor-save-error: "<prefix><red>Could not save: <white>{error}"
+editor-deleted: "<prefix><yellow>Box '<white>{box}<yellow>' deleted."
+editor-hold-item: "<prefix><red>Hold an item in your main hand first."
+editor-invalid-number: "<prefix><red>That is not a valid number."
+editor-shift-to-delete: "<prefix><red>Shift-click to confirm deletion."
+editor-reward-no-item: "<prefix><red>Set the reward item before saving."

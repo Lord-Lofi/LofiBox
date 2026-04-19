@@ -40,6 +40,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
             case "open"    -> handleOpen(sender, args);
             case "preview" -> handlePreview(sender, args);
             case "stats"   -> handleStats(sender, args);
+            case "editor"  -> handleEditor(sender);
             default        -> sendHelp(sender);
         }
         return true;
@@ -224,7 +225,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
         if (args.length == 1) {
-            completions.addAll(List.of("give", "givekey", "open", "preview", "list", "stats", "reload"));
+            completions.addAll(List.of("give", "givekey", "open", "preview", "list", "stats", "reload", "editor"));
         } else if (args.length == 2) {
             String sub = args[0].toLowerCase();
             if (sub.equals("give") || sub.equals("open") || sub.equals("preview")) {
@@ -249,6 +250,12 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
+    private void handleEditor(CommandSender sender) {
+        if (!(sender instanceof Player player)) { sender.sendMessage("§cPlayers only."); return; }
+        if (!player.hasPermission("lofibox.editor")) { msg(sender, "no-permission"); return; }
+        plugin.getEditorManager().openMainEditor(player);
+    }
+
     private void msg(CommandSender sender, String key, String... replacements) {
         sender.sendMessage(plugin.getMessageConfig().get(key, replacements));
     }
@@ -262,6 +269,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage("§7/lofibox list");
         sender.sendMessage("§7/lofibox stats §f[player]");
         sender.sendMessage("§7/lofibox reload");
+        sender.sendMessage("§7/lofibox editor");
     }
 
     private int parseInt(String s, int fallback) {

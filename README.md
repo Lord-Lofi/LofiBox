@@ -13,6 +13,7 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 - **Permission-gated rewards** — rewards can require a LuckPerms node; re-rolls for ineligible players
 - **7-tier key system** — optional per-box key requirement (Wooden → Netherite); admins bypass automatically
 - **Vault economy cost** — optional per-box open cost charged via any Vault-compatible economy plugin
+- **In-game admin editor** — full GUI to create, edit, and delete boxes without touching YAML
 - **CSGO-style spin animation** — decelerating strip GUI that stops on the winner
 - **Reward preview GUI** — paginated view of all rewards with chance percentages
 - **Action system** — `[message]` `[actionbar]` `[title]` `[sound]` `[command]` `[console]` fire on win
@@ -57,6 +58,7 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 | `/lofibox list` | `lofibox.use` | List all loaded boxes |
 | `/lofibox stats [player]` | `lofibox.use` | View open counts |
 | `/lofibox reload` | `lofibox.reload` | Reload all configs and boxes |
+| `/lofibox editor` | `lofibox.editor` | Open the in-game box editor GUI |
 
 Aliases: `/mb`, `/crate`, `/lbox`
 
@@ -72,6 +74,7 @@ Aliases: `/mb`, `/crate`, `/lbox`
 | `lofibox.reload` | op | Reload configs |
 | `lofibox.stats.others` | op | View another player's stats |
 | `lofibox.bypass` | op | Bypass permission-gated rewards |
+| `lofibox.editor` | op | Open the in-game box editor GUI |
 
 ---
 

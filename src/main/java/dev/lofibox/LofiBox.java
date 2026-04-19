@@ -4,11 +4,14 @@ import dev.lofibox.box.BoxManager;
 import dev.lofibox.commands.LofiBoxCommand;
 import dev.lofibox.config.ConfigManager;
 import dev.lofibox.config.MessageConfig;
+import dev.lofibox.editor.ChatInputManager;
+import dev.lofibox.editor.EditorManager;
 import dev.lofibox.integration.HeadCategoryManager;
 import dev.lofibox.integration.HeadDatabaseHook;
 import dev.lofibox.integration.VaultHook;
 import dev.lofibox.key.KeyManager;
 import dev.lofibox.listeners.BoxItemListener;
+import dev.lofibox.listeners.EditorListener;
 import dev.lofibox.listeners.MenuListener;
 import dev.lofibox.stats.StatsManager;
 import dev.lofibox.util.ActionRunner;
@@ -30,6 +33,8 @@ public final class LofiBox extends JavaPlugin {
     private HeadCategoryManager  headCategoryManager;
     private KeyManager           keyManager;
     private VaultHook            vaultHook;
+    private EditorManager        editorManager;
+    private ChatInputManager     chatInputManager;
 
     @Override
     public void onEnable() {
@@ -72,8 +77,13 @@ public final class LofiBox extends JavaPlugin {
             cmd.setTabCompleter(handler);
         }
 
+        editorManager    = new EditorManager(this);
+        chatInputManager = new ChatInputManager(this);
+
         pm.registerEvents(new BoxItemListener(this), this);
         pm.registerEvents(new MenuListener(this), this);
+        pm.registerEvents(chatInputManager, this);
+        pm.registerEvents(new EditorListener(this), this);
 
         if (pm.isPluginEnabled("PlaceholderAPI")) {
             new PlaceholderHook(this).register();
@@ -109,4 +119,6 @@ public final class LofiBox extends JavaPlugin {
     public HeadCategoryManager getHeadCategoryManager() { return headCategoryManager; }
     public KeyManager getKeyManager()                   { return keyManager; }
     public VaultHook getVaultHook()                     { return vaultHook; }
+    public EditorManager getEditorManager()             { return editorManager; }
+    public ChatInputManager getChatInputManager()       { return chatInputManager; }
 }
