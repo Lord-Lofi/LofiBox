@@ -9,6 +9,7 @@ softdepend:
   - PlaceholderAPI
   - HeadDatabase
   - LuckPerms
+  - Vault
 
 commands:
   lofibox:

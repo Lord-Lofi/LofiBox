@@ -110,6 +110,20 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
                 msg(sender, "no-box-in-hand"); return;
             }
 
+            // Vault cost check
+            if (box.hasCost()) {
+                var vault = plugin.getVaultHook();
+                if (!vault.isAvailable()) {
+                    msg(sender, "vault-unavailable"); return;
+                }
+                if (!vault.has(player, box.getOpenCost())) {
+                    msg(sender, "vault-insufficient-funds",
+                        "cost", vault.format(box.getOpenCost()),
+                        "balance", vault.format(vault.getBalance(player)));
+                    return;
+                }
+            }
+
             // Key check
             if (box.requiresKey()) {
                 if (!plugin.getKeyManager().hasKey(player, box.getRequiredKey())) {
@@ -118,12 +132,22 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
                         "box", box.getDisplayName());
                     return;
                 }
+            }
+
+            // Consume box item
+            if (item.getAmount() > 1) item.setAmount(item.getAmount() - 1);
+            else player.getInventory().setItemInMainHand(null);
+
+            // Consume key and deduct cost
+            if (box.requiresKey()) {
                 plugin.getKeyManager().consumeKey(player, box.getRequiredKey());
                 msg(sender, "key-consumed", "key", box.getRequiredKey().getDisplayName());
             }
-
-            if (item.getAmount() > 1) item.setAmount(item.getAmount() - 1);
-            else player.getInventory().setItemInMainHand(null);
+            if (box.hasCost()) {
+                var vault = plugin.getVaultHook();
+                vault.withdraw(player, box.getOpenCost());
+                msg(sender, "vault-charged", "cost", vault.format(box.getOpenCost()));
+            }
         }
 
         msg(sender, "box-opened", "box", box.getDisplayName());

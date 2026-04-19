@@ -102,7 +102,10 @@ public final class BoxManager {
             }
         }
 
-        return new MysteryBox(id, displayName, boxItem, rewards, openSound, winSound, requiredKey);
+        // Optional Vault economy cost
+        double openCost = cfg.getDouble("open-cost", 0.0);
+
+        return new MysteryBox(id, displayName, boxItem, rewards, openSound, winSound, requiredKey, openCost);
     }
 
     // ── Opening ───────────────────────────────────────────────────────────────
