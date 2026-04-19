@@ -51,11 +51,28 @@ public final class BoxItemListener implements Listener {
             return;
         }
 
+        // Key check — admins bypass
+        if (box.requiresKey() && !player.hasPermission("lofibox.admin")) {
+            if (!plugin.getKeyManager().hasKey(player, box.getRequiredKey())) {
+                plugin.getMessageConfig().send(player, "key-required",
+                    "key", box.getRequiredKey().getDisplayName(),
+                    "box", box.getDisplayName());
+                return;
+            }
+        }
+
         // Consume one box item BEFORE opening to prevent duplication exploits
         if (item.getAmount() > 1) {
             item.setAmount(item.getAmount() - 1);
         } else {
             player.getInventory().setItemInMainHand(null);
+        }
+
+        // Consume the key after the box is confirmed consumed
+        if (box.requiresKey() && !player.hasPermission("lofibox.admin")) {
+            plugin.getKeyManager().consumeKey(player, box.getRequiredKey());
+            plugin.getMessageConfig().send(player, "key-consumed",
+                "key", box.getRequiredKey().getDisplayName());
         }
 
         plugin.getMessageConfig().send(player, "box-opened", "box", box.getDisplayName());

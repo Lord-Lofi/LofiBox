@@ -21,6 +21,12 @@ sounds:
   open: "block.chest.open"
   win: "entity.player.levelup"
 
+# Optional: require a specific key tier to open this box.
+# Valid tiers: wooden, stone, copper, iron, golden, diamond, netherite
+# Admins with lofibox.admin bypass this check.
+# Remove or leave blank to allow opening without a key.
+# required-key: golden
+
 rewards:
 
   # ── Common ────────────────────────────────────────────────────────────────
