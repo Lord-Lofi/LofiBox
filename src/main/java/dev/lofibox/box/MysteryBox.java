@@ -1,5 +1,6 @@
 package dev.lofibox.box;
 
+import dev.lofibox.key.KeyTier;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,9 +18,12 @@ public final class MysteryBox {
     private final String openSound;
     private final String winSound;
     private final int totalWeight;
+    private final KeyTier requiredKey;
+    private final double openCost;
 
     public MysteryBox(String id, String displayName, ItemStack boxItem,
-                      List<BoxReward> rewards, String openSound, String winSound) {
+                      List<BoxReward> rewards, String openSound, String winSound,
+                      KeyTier requiredKey, double openCost) {
         this.id          = id;
         this.displayName = displayName;
         this.boxItem     = boxItem;
@@ -27,6 +31,8 @@ public final class MysteryBox {
         this.openSound   = openSound;
         this.winSound    = winSound;
         this.totalWeight = rewards.stream().mapToInt(BoxReward::getWeight).sum();
+        this.requiredKey = requiredKey;
+        this.openCost    = openCost;
     }
 
     /** Rolls a random reward, respecting per-player permission gates. Re-rolls if needed. */
@@ -51,4 +57,10 @@ public final class MysteryBox {
     public String getOpenSound()             { return openSound; }
     public String getWinSound()              { return winSound; }
     public int getTotalWeight()              { return totalWeight; }
+    /** Null means no key is required to open this box. */
+    public KeyTier getRequiredKey()          { return requiredKey; }
+    public boolean requiresKey()             { return requiredKey != null; }
+    /** Zero or negative means no cost. */
+    public double getOpenCost()              { return openCost; }
+    public boolean hasCost()                 { return openCost > 0; }
 }

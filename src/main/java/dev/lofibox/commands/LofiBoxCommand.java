@@ -3,6 +3,7 @@ package dev.lofibox.commands;
 import dev.lofibox.LofiBox;
 import dev.lofibox.box.MysteryBox;
 import dev.lofibox.gui.PreviewGui;
+import dev.lofibox.key.KeyTier;
 import dev.lofibox.stats.StatsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -35,6 +36,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
             case "reload"  -> handleReload(sender);
             case "list"    -> handleList(sender);
             case "give"    -> handleGive(sender, args);
+            case "givekey" -> handleGiveKey(sender, args);
             case "open"    -> handleOpen(sender, args);
             case "preview" -> handlePreview(sender, args);
             case "stats"   -> handleStats(sender, args);
@@ -107,12 +109,75 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
             if (!boxId.equals(heldBoxId)) {
                 msg(sender, "no-box-in-hand"); return;
             }
+
+            // Vault cost check
+            if (box.hasCost()) {
+                var vault = plugin.getVaultHook();
+                if (!vault.isAvailable()) {
+                    msg(sender, "vault-unavailable"); return;
+                }
+                if (!vault.has(player, box.getOpenCost())) {
+                    msg(sender, "vault-insufficient-funds",
+                        "cost", vault.format(box.getOpenCost()),
+                        "balance", vault.format(vault.getBalance(player)));
+                    return;
+                }
+            }
+
+            // Key check
+            if (box.requiresKey()) {
+                if (!plugin.getKeyManager().hasKey(player, box.getRequiredKey())) {
+                    msg(sender, "key-required",
+                        "key", box.getRequiredKey().getDisplayName(),
+                        "box", box.getDisplayName());
+                    return;
+                }
+            }
+
+            // Consume box item
             if (item.getAmount() > 1) item.setAmount(item.getAmount() - 1);
             else player.getInventory().setItemInMainHand(null);
+
+            // Consume key and deduct cost
+            if (box.requiresKey()) {
+                plugin.getKeyManager().consumeKey(player, box.getRequiredKey());
+                msg(sender, "key-consumed", "key", box.getRequiredKey().getDisplayName());
+            }
+            if (box.hasCost()) {
+                var vault = plugin.getVaultHook();
+                vault.withdraw(player, box.getOpenCost());
+                msg(sender, "vault-charged", "cost", vault.format(box.getOpenCost()));
+            }
         }
 
         msg(sender, "box-opened", "box", box.getDisplayName());
         plugin.getBoxManager().openBox(player, box);
+    }
+
+    private void handleGiveKey(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("lofibox.give")) { msg(sender, "no-permission"); return; }
+        if (args.length < 3) { sender.sendMessage("§cUsage: /lofibox givekey <tier> <player> [amount]"); return; }
+
+        KeyTier tier;
+        try {
+            tier = KeyTier.valueOf(args[1].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            sender.sendMessage("§cUnknown key tier. Valid tiers: wooden, stone, copper, iron, golden, diamond, netherite");
+            return;
+        }
+
+        Player target = Bukkit.getPlayerExact(args[2]);
+        if (target == null) { msg(sender, "unknown-player", "player", args[2]); return; }
+
+        int amount = args.length >= 4 ? parseInt(args[3], 1) : 1;
+        ItemStack key = plugin.getKeyManager().createKey(tier, amount);
+        Map<Integer, ItemStack> leftover = target.getInventory().addItem(key);
+        leftover.values().forEach(it -> target.getWorld().dropItemNaturally(target.getLocation(), it));
+
+        sender.sendMessage(plugin.getMessageConfig().get("give-success",
+            "box", tier.getDisplayName(), "player", target.getName(), "amount", String.valueOf(amount)));
+        target.sendMessage(plugin.getMessageConfig().get("give-received",
+            "box", tier.getDisplayName(), "amount", String.valueOf(amount)));
     }
 
     private void handlePreview(CommandSender sender, String[] args) {
@@ -159,17 +224,22 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
         if (args.length == 1) {
-            completions.addAll(List.of("give", "open", "preview", "list", "stats", "reload"));
+            completions.addAll(List.of("give", "givekey", "open", "preview", "list", "stats", "reload"));
         } else if (args.length == 2) {
             String sub = args[0].toLowerCase();
             if (sub.equals("give") || sub.equals("open") || sub.equals("preview")) {
                 completions.addAll(plugin.getBoxManager().getBoxIds());
+            } else if (sub.equals("givekey")) {
+                for (KeyTier t : KeyTier.values()) completions.add(t.name().toLowerCase());
             } else if (sub.equals("stats")) {
                 Bukkit.getOnlinePlayers().forEach(p -> completions.add(p.getName()));
             }
-        } else if (args.length == 3 && args[0].equalsIgnoreCase("give")) {
-            Bukkit.getOnlinePlayers().forEach(p -> completions.add(p.getName()));
-        } else if (args.length == 4 && args[0].equalsIgnoreCase("give")) {
+        } else if (args.length == 3) {
+            String sub = args[0].toLowerCase();
+            if (sub.equals("give") || sub.equals("givekey")) {
+                Bukkit.getOnlinePlayers().forEach(p -> completions.add(p.getName()));
+            }
+        } else if (args.length == 4 && (args[0].equalsIgnoreCase("give") || args[0].equalsIgnoreCase("givekey"))) {
             completions.addAll(List.of("1", "5", "10", "64"));
         }
         String partial = args[args.length - 1].toLowerCase();
@@ -186,6 +256,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
     private void sendHelp(CommandSender sender) {
         sender.sendMessage(plugin.getMessageConfig().get("list-header"));
         sender.sendMessage("§7/lofibox give §f<box> <player> [amount]");
+        sender.sendMessage("§7/lofibox givekey §f<tier> <player> [amount]");
         sender.sendMessage("§7/lofibox open §f<box>");
         sender.sendMessage("§7/lofibox preview §f<box>");
         sender.sendMessage("§7/lofibox list");

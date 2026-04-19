@@ -6,6 +6,8 @@ import dev.lofibox.config.ConfigManager;
 import dev.lofibox.config.MessageConfig;
 import dev.lofibox.integration.HeadCategoryManager;
 import dev.lofibox.integration.HeadDatabaseHook;
+import dev.lofibox.integration.VaultHook;
+import dev.lofibox.key.KeyManager;
 import dev.lofibox.listeners.BoxItemListener;
 import dev.lofibox.listeners.MenuListener;
 import dev.lofibox.stats.StatsManager;
@@ -26,6 +28,8 @@ public final class LofiBox extends JavaPlugin {
     private ActionRunner         actionRunner;
     private HeadDatabaseHook     headDatabaseHook;
     private HeadCategoryManager  headCategoryManager;
+    private KeyManager           keyManager;
+    private VaultHook            vaultHook;
 
     @Override
     public void onEnable() {
@@ -36,12 +40,23 @@ public final class LofiBox extends JavaPlugin {
         messageConfig    = new MessageConfig(this);
         statsManager     = new StatsManager(this);
         actionRunner     = new ActionRunner(this);
+        keyManager       = new KeyManager(this);
+
+        PluginManager pm = getServer().getPluginManager();
+
+        vaultHook = new VaultHook();
+        if (pm.isPluginEnabled("Vault")) {
+            if (vaultHook.setup(this)) {
+                getLogger().info("Vault economy hook registered.");
+            } else {
+                getLogger().warning("Vault found but no economy provider — cost features disabled.");
+            }
+        }
 
         headDatabaseHook    = new HeadDatabaseHook();
         headCategoryManager = new HeadCategoryManager(this);
         headDatabaseHook.setCategoryManager(headCategoryManager);
 
-        PluginManager pm = getServer().getPluginManager();
         if (pm.isPluginEnabled("HeadDatabase")) {
             pm.registerEvents(headDatabaseHook, this);
             getLogger().info("HeadDatabase hook registered.");
@@ -92,4 +107,6 @@ public final class LofiBox extends JavaPlugin {
     public ActionRunner getActionRunner()         { return actionRunner; }
     public HeadDatabaseHook getHeadDatabaseHook()       { return headDatabaseHook; }
     public HeadCategoryManager getHeadCategoryManager() { return headCategoryManager; }
+    public KeyManager getKeyManager()                   { return keyManager; }
+    public VaultHook getVaultHook()                     { return vaultHook; }
 }
