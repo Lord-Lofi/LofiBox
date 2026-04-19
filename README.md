@@ -137,4 +137,4 @@ Full documentation is available on the [Wiki](https://github.com/Lord-Lofi/LofiB
 
 ## License
 
-[MIT](LICENSE)
+[GPL-3.0](LICENSE)
