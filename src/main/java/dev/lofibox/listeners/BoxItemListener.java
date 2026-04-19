@@ -51,11 +51,50 @@ public final class BoxItemListener implements Listener {
             return;
         }
 
+        // Vault cost check — admins bypass
+        if (box.hasCost() && !player.hasPermission("lofibox.admin")) {
+            var vault = plugin.getVaultHook();
+            if (!vault.isAvailable()) {
+                plugin.getMessageConfig().send(player, "vault-unavailable");
+                return;
+            }
+            if (!vault.has(player, box.getOpenCost())) {
+                plugin.getMessageConfig().send(player, "vault-insufficient-funds",
+                    "cost", vault.format(box.getOpenCost()),
+                    "balance", vault.format(vault.getBalance(player)));
+                return;
+            }
+        }
+
+        // Key check — admins bypass
+        if (box.requiresKey() && !player.hasPermission("lofibox.admin")) {
+            if (!plugin.getKeyManager().hasKey(player, box.getRequiredKey())) {
+                plugin.getMessageConfig().send(player, "key-required",
+                    "key", box.getRequiredKey().getDisplayName(),
+                    "box", box.getDisplayName());
+                return;
+            }
+        }
+
         // Consume one box item BEFORE opening to prevent duplication exploits
         if (item.getAmount() > 1) {
             item.setAmount(item.getAmount() - 1);
         } else {
             player.getInventory().setItemInMainHand(null);
+        }
+
+        // Consume key and deduct cost after box is confirmed consumed
+        if (!player.hasPermission("lofibox.admin")) {
+            if (box.requiresKey()) {
+                plugin.getKeyManager().consumeKey(player, box.getRequiredKey());
+                plugin.getMessageConfig().send(player, "key-consumed",
+                    "key", box.getRequiredKey().getDisplayName());
+            }
+            if (box.hasCost()) {
+                plugin.getVaultHook().withdraw(player, box.getOpenCost());
+                plugin.getMessageConfig().send(player, "vault-charged",
+                    "cost", plugin.getVaultHook().format(box.getOpenCost()));
+            }
         }
 
         plugin.getMessageConfig().send(player, "box-opened", "box", box.getDisplayName());

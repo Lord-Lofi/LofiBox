@@ -21,6 +21,18 @@ sounds:
   open: "block.chest.open"
   win: "entity.player.levelup"
 
+# Optional: require a specific key tier to open this box.
+# Valid tiers: wooden, stone, copper, iron, golden, diamond, netherite
+# Admins with lofibox.admin bypass this check.
+# Remove or leave blank to allow opening without a key.
+# required-key: golden
+
+# Optional: charge a Vault economy cost to open this box.
+# Requires Vault + an economy plugin (e.g. EssentialsX, CMI).
+# Admins with lofibox.admin bypass this check.
+# Remove or set to 0 to disable.
+# open-cost: 500.0
+
 rewards:
 
   # ── Common ────────────────────────────────────────────────────────────────

@@ -9,6 +9,7 @@ softdepend:
   - PlaceholderAPI
   - HeadDatabase
   - LuckPerms
+  - Vault
 
 commands:
   lofibox:
@@ -34,4 +35,7 @@ permissions:
     default: op
   lofibox.bypass:
     description: Bypass permission-gated rewards.
+    default: op
+  lofibox.editor:
+    description: Open the in-game box editor GUI.
     default: op

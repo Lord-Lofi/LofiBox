@@ -2,6 +2,7 @@ package dev.lofibox.box;
 
 import dev.lofibox.LofiBox;
 import dev.lofibox.gui.SpinGui;
+import dev.lofibox.key.KeyTier;
 import dev.lofibox.util.ItemUtil;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -89,7 +90,22 @@ public final class BoxManager {
             plugin.getLogger().warning("Box '" + id + "' has no rewards — skipping.");
             return null;
         }
-        return new MysteryBox(id, displayName, boxItem, rewards, openSound, winSound);
+
+        // Optional key requirement
+        KeyTier requiredKey = null;
+        String keyName = cfg.getString("required-key", "");
+        if (!keyName.isBlank()) {
+            try {
+                requiredKey = KeyTier.valueOf(keyName.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                plugin.getLogger().warning("Box '" + id + "' has unknown required-key '" + keyName + "' — ignoring.");
+            }
+        }
+
+        // Optional Vault economy cost
+        double openCost = cfg.getDouble("open-cost", 0.0);
+
+        return new MysteryBox(id, displayName, boxItem, rewards, openSound, winSound, requiredKey, openCost);
     }
 
     // ── Opening ───────────────────────────────────────────────────────────────
