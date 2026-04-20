@@ -18,8 +18,14 @@ public final class EssDiscordHook {
         discord = rsp.getProvider();
         if (discord == null) return false;
 
-        messageType = new MessageType(channelKey);
-        discord.registerMessageType(plugin, messageType);
+        // Use existing type if already registered (e.g. built-in "chat"),
+        // otherwise register a new custom type.
+        if (discord.isRegistered(channelKey)) {
+            messageType = new MessageType(channelKey);
+        } else {
+            messageType = new MessageType(channelKey);
+            discord.registerMessageType(plugin, messageType);
+        }
         return true;
     }
 
