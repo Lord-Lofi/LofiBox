@@ -18,30 +18,50 @@ categories:
   # ── Year-round base categories ───────────────────────────────────────────────
 
   alphanumeric:
-    search: alphabet
+    hdb-category: ALPHABET
 
   animals:
-    search: animals
+    hdb-category: ANIMALS
+    search:
+      - "animals"
+      - "animal"
 
   blocks:
-    search: blocks
+    hdb-category: BLOCKS
 
   decoration:
-    search: decoration
+    hdb-category: DECORATION
 
   food_and_drink:
-    search: food_drinks
+    hdb-category: FOOD_DRINKS
+    search:
+      - "food"
+      - "drink"
+      - "fruit"
+      - "vegetable"
+      - "bread"
+      - "cake"
+      - "pizza"
+      - "burger"
+      - "sushi"
+      - "coffee"
+      - "juice"
+      - "cooking"
 
   humanoid:
-    search: humanoid
+    hdb-category: HUMANOID
 
   humans:
-    search: humans
+    hdb-category: HUMANS
+    search:
+      - "humans"
+      - "human"
 
   miscellaneous:
-    search: miscellaneous
+    hdb-category: MISCELLANEOUS
 
   plushie:
+    hdb-category: HUMANOID
     search: plushie
 
   pokemon:
@@ -126,6 +146,7 @@ categories:
     search: dinosaur
 
   insects:
+    hdb-category: ANIMALS
     search: insect
 
   ocean:
@@ -138,6 +159,7 @@ categories:
       - "coral"
 
   plants:
+    hdb-category: PLANTS
     search:
       - "plant"
       - "flower"
@@ -179,6 +201,7 @@ categories:
   # ── Monsters (double-chance during Halloween season) ──────────────────────────
 
   monsters:
+    hdb-category: MONSTERS
     search: monsters
     double-chance: 5
     double-chance-from: "10-01"

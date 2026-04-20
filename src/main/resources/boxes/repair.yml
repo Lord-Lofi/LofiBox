@@ -1,0 +1,23 @@
+name: "<gold>✦ Repair Crate ✦</gold>"
+
+item:
+  material: CHEST
+  name: "<gold>✦ Repair Crate ✦</gold>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+
+sounds:
+  open: "block.chest.open"
+  win: "entity.player.levelup"
+
+rewards:
+  repair_access:
+    weight: 100
+    display-name: "<green>Sign Repair Access"
+    item:
+      material: OAK_SIGN
+      name: "<green>Sign Repair Access"
+    actions:
+      - "[console] lp user {player} permission set temporaryperm.sign.repair.access true"
+      - "[message] <green>You have been granted sign repair access!"
