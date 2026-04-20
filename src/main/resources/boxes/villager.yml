@@ -1,0 +1,50 @@
+name: "<gradient:#16a34a:#854d0e>✦ Villager Crate ✦</gradient>"
+
+item:
+  material: EMERALD
+  name: "<gradient:#16a34a:#854d0e>✦ Villager Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains villager heads"
+
+rewards:
+
+  villager_head:
+    weight: 40
+    display-name: "<gradient:#16a34a:#854d0e>Mystery Villager Head"
+    item:
+      head-database-category: "villager"
+      material: PLAYER_HEAD
+      name: "<gradient:#16a34a:#854d0e>Mystery Villager Head"
+    actions:
+      - "[message] <gradient:#16a34a:#854d0e>You found a Mystery Villager Head!"
+
+  emerald:
+    weight: 30
+    display-name: "<green>Emerald x8"
+    item:
+      material: EMERALD
+      name: "<green>Emerald"
+      amount: 8
+    actions:
+      - "[message] <green>You received 8 Emeralds."
+
+  enchanted_book:
+    weight: 20
+    display-name: "<light_purple>Enchanted Book"
+    item:
+      material: ENCHANTED_BOOK
+      name: "<light_purple>Enchanted Book"
+    actions:
+      - "[message] <light_purple>You received an Enchanted Book!"
+
+  emerald_block:
+    weight: 10
+    display-name: "<green>Emerald Block"
+    item:
+      material: EMERALD_BLOCK
+      name: "<green>Emerald Block"
+    actions:
+      - "[message] <green>The villagers have blessed you — you received an Emerald Block!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

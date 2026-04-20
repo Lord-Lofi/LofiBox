@@ -1,0 +1,50 @@
+name: "<gradient:#84cc16:#a16207>✦ Dinosaur Crate ✦</gradient>"
+
+item:
+  material: BONE
+  name: "<gradient:#84cc16:#a16207>✦ Dinosaur Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains dinosaur heads"
+
+rewards:
+
+  dinosaur_head:
+    weight: 40
+    display-name: "<gradient:#84cc16:#a16207>Mystery Dinosaur Head"
+    item:
+      head-database-category: "dinosaur"
+      material: PLAYER_HEAD
+      name: "<gradient:#84cc16:#a16207>Mystery Dinosaur Head"
+    actions:
+      - "[message] <gradient:#84cc16:#a16207>You found a Mystery Dinosaur Head!"
+
+  bone:
+    weight: 30
+    display-name: "<white>Bone x8"
+    item:
+      material: BONE
+      name: "<white>Bone"
+      amount: 8
+    actions:
+      - "[message] <white>You received 8 Bones."
+
+  ancient_debris:
+    weight: 20
+    display-name: "<dark_purple>Ancient Debris"
+    item:
+      material: ANCIENT_DEBRIS
+      name: "<dark_purple>Ancient Debris"
+    actions:
+      - "[message] <dark_purple>You found Ancient Debris!"
+
+  bone_block:
+    weight: 10
+    display-name: "<gray>Bone Block x4"
+    item:
+      material: BONE_BLOCK
+      name: "<gray>Bone Block"
+      amount: 4
+    actions:
+      - "[message] <gray>You received 4 Bone Blocks!"

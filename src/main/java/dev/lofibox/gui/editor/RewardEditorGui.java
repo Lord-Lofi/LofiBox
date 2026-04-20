@@ -82,14 +82,14 @@ public final class RewardEditorGui implements InventoryHolder {
             if (m != null) {
                 m.displayName(MessageUtil.parse("<aqua>Reward Item"));
                 m.lore(List.of(Component.empty(),
-                    MessageUtil.parse("<gray>Hold an item and left-click"),
-                    MessageUtil.parse("<gray>to replace the reward item.")));
+                    MessageUtil.parse("<gray>Pick up an item onto your cursor,"),
+                    MessageUtil.parse("<gray>then click here to replace the reward item.")));
                 di.setItemMeta(m);
             }
             inv.setItem(SLOT_DISPLAY_ITEM, di);
         } else {
             inv.setItem(SLOT_DISPLAY_ITEM, BoxEditorGui.btn(Material.BARRIER, "<aqua>Reward Item",
-                List.of("<gray>Hold an item and left-click", "<gray>to set the reward item.")));
+                List.of("<gray>Pick up an item onto your cursor,", "<gray>then click here to set the reward item.")));
         }
 
         inv.setItem(SLOT_NAME, BoxEditorGui.btn(Material.WRITABLE_BOOK, "<aqua>Display Name",

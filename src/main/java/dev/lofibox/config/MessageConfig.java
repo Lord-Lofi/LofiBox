@@ -3,6 +3,7 @@ package dev.lofibox.config;
 import dev.lofibox.LofiBox;
 import dev.lofibox.util.MessageUtil;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -32,6 +33,11 @@ public final class MessageConfig {
         raw = raw.replace("<prefix>", prefix);
         raw = MessageUtil.replacePlaceholders(raw, replacements);
         return MessageUtil.parse(raw);
+    }
+
+    /** Returns the message as plain text (MiniMessage tags stripped), suitable for Discord. */
+    public String getRaw(String key, String... replacements) {
+        return PlainTextComponentSerializer.plainText().serialize(get(key, replacements));
     }
 
     public void send(Player player, String key, String... replacements) {

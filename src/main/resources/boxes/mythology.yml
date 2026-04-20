@@ -1,0 +1,53 @@
+name: "<gradient:#f59e0b:#fbbf24>✦ Mythology Crate ✦</gradient>"
+
+item:
+  material: TOTEM_OF_UNDYING
+  name: "<gradient:#f59e0b:#fbbf24>✦ Mythology Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains mythology-themed heads"
+
+sounds:
+  win: "ui.toast.challenge_complete"
+
+rewards:
+
+  mythology_head:
+    weight: 40
+    display-name: "<gradient:#f59e0b:#fbbf24>Mystery Mythology Head"
+    item:
+      head-database-category: "mythology"
+      material: PLAYER_HEAD
+      name: "<gradient:#f59e0b:#fbbf24>Mystery Mythology Head"
+    actions:
+      - "[message] <gradient:#f59e0b:#fbbf24>You found a Mystery Mythology Head!"
+
+  gold_ingot:
+    weight: 30
+    display-name: "<gold>Gold Ingot x8"
+    item:
+      material: GOLD_INGOT
+      name: "<gold>Gold Ingot"
+      amount: 8
+    actions:
+      - "[message] <gold>You received 8 Gold Ingots."
+
+  totem:
+    weight: 20
+    display-name: "<yellow>Totem of Undying"
+    item:
+      material: TOTEM_OF_UNDYING
+      name: "<yellow>Totem of Undying"
+    actions:
+      - "[message] <yellow>You received a Totem of Undying!"
+
+  nether_star:
+    weight: 10
+    display-name: "<gold>★ Nether Star"
+    item:
+      material: NETHER_STAR
+      name: "<gold>★ Nether Star"
+    actions:
+      - "[message] <gold>★ Blessed by the gods — you received a Nether Star!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

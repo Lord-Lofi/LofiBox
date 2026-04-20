@@ -1,0 +1,56 @@
+# Seasonal: head pool active February 1 through February 21.
+# The Valentine head reward falls back to a Poppy outside that window.
+name: "<gradient:#f43f5e:#fb7185>✦ Valentine Crate ✦</gradient>"
+
+item:
+  material: POPPY
+  name: "<gradient:#f43f5e:#fb7185>✦ Valentine Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Seasonal: February 1 — February 21"
+
+sounds:
+  win: "block.amethyst_block.chime"
+
+rewards:
+
+  valentine_head:
+    weight: 40
+    display-name: "<gradient:#f43f5e:#fb7185>Mystery Valentine Head"
+    item:
+      head-database-category: "valentine"
+      material: POPPY
+      name: "<gradient:#f43f5e:#fb7185>Mystery Valentine Head"
+    actions:
+      - "[message] <gradient:#f43f5e:#fb7185>You found a Mystery Valentine Head!"
+
+  poppy:
+    weight: 30
+    display-name: "<red>Poppy x8"
+    item:
+      material: POPPY
+      name: "<red>Poppy"
+      amount: 8
+    actions:
+      - "[message] <red>You received 8 Poppies."
+
+  rose_bush:
+    weight: 20
+    display-name: "<red>Rose Bush x4"
+    item:
+      material: ROSE_BUSH
+      name: "<red>Rose Bush"
+      amount: 4
+    actions:
+      - "[message] <red>You received 4 Rose Bushes!"
+
+  red_dye:
+    weight: 10
+    display-name: "<red>Red Dye x16"
+    item:
+      material: RED_DYE
+      name: "<red>Red Dye"
+      amount: 16
+    actions:
+      - "[message] <red>You received 16 Red Dye!"

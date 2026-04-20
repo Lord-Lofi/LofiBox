@@ -1,0 +1,48 @@
+name: "<white>✦ Alphanumeric Crate ✦</white>"
+
+item:
+  material: BOOKSHELF
+  name: "<white>✦ Alphanumeric Crate ✦</white>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains alphabet & number heads"
+
+rewards:
+
+  letter_head:
+    weight: 40
+    display-name: "<white>Mystery Letter Head"
+    item:
+      head-database-category: "alphanumeric"
+      material: PLAYER_HEAD
+      name: "<white>Mystery Letter Head"
+    actions:
+      - "[message] <white>You found a Mystery Letter Head!"
+
+  book_and_quill:
+    weight: 30
+    display-name: "<gray>Book & Quill"
+    item:
+      material: WRITABLE_BOOK
+      name: "<gray>Book & Quill"
+    actions:
+      - "[message] <gray>You received a Book & Quill."
+
+  name_tag:
+    weight: 20
+    display-name: "<aqua>Name Tag"
+    item:
+      material: NAME_TAG
+      name: "<aqua>Name Tag"
+    actions:
+      - "[message] <aqua>You received a Name Tag!"
+
+  enchanted_book:
+    weight: 10
+    display-name: "<light_purple>Enchanted Book"
+    item:
+      material: ENCHANTED_BOOK
+      name: "<light_purple>Enchanted Book"
+    actions:
+      - "[message] <light_purple>You received an Enchanted Book!"

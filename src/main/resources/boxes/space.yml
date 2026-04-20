@@ -1,0 +1,54 @@
+name: "<gradient:#1e1b4b:#818cf8>✦ Space Crate ✦</gradient>"
+
+item:
+  material: END_CRYSTAL
+  name: "<gradient:#1e1b4b:#818cf8>✦ Space Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains space & galaxy heads"
+
+sounds:
+  open: "ambient.the_end.loop"
+
+rewards:
+
+  space_head:
+    weight: 40
+    display-name: "<gradient:#818cf8:#c084fc>Mystery Space Head"
+    item:
+      head-database-category: "space"
+      material: PLAYER_HEAD
+      name: "<gradient:#818cf8:#c084fc>Mystery Space Head"
+    actions:
+      - "[message] <gradient:#818cf8:#c084fc>You found a Mystery Space Head!"
+
+  ender_pearl:
+    weight: 25
+    display-name: "<dark_aqua>Ender Pearl x4"
+    item:
+      material: ENDER_PEARL
+      name: "<dark_aqua>Ender Pearl"
+      amount: 4
+    actions:
+      - "[message] <dark_aqua>You received 4 Ender Pearls."
+
+  chorus_fruit:
+    weight: 25
+    display-name: "<light_purple>Chorus Fruit x8"
+    item:
+      material: CHORUS_FRUIT
+      name: "<light_purple>Chorus Fruit"
+      amount: 8
+    actions:
+      - "[message] <light_purple>You received 8 Chorus Fruit!"
+
+  elytra:
+    weight: 10
+    display-name: "<gradient:#818cf8:#c084fc>★ Elytra"
+    item:
+      material: ELYTRA
+      name: "<gradient:#818cf8:#c084fc>★ Elytra"
+    actions:
+      - "[message] <gradient:#818cf8:#c084fc>★ To infinity and beyond — you received an Elytra!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

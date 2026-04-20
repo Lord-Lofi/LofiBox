@@ -9,6 +9,7 @@ import dev.lofibox.gui.editor.BoxEditorGui;
 import dev.lofibox.gui.editor.MainEditorGui;
 import dev.lofibox.gui.editor.RewardEditorGui;
 import dev.lofibox.key.KeyTier;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -35,19 +36,23 @@ public final class EditorListener implements Listener {
             e.setCancelled(true);
             handleMain(e, player, gui);
         } else if (holder instanceof BoxEditorGui gui) {
-            e.setCancelled(true);
-            handleBox(e, player, gui);
+            boolean inTop = e.getClickedInventory() != null && e.getClickedInventory().equals(gui.getInventory());
+            if (inTop || e.isShiftClick()) e.setCancelled(true);
+            if (inTop) handleBox(e, player, gui);
         } else if (holder instanceof RewardEditorGui gui) {
-            e.setCancelled(true);
-            handleReward(e, player, gui);
+            boolean inTop = e.getClickedInventory() != null && e.getClickedInventory().equals(gui.getInventory());
+            if (inTop || e.isShiftClick()) e.setCancelled(true);
+            if (inTop) handleReward(e, player, gui);
         }
     }
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onInventoryDrag(InventoryDragEvent e) {
         Object holder = e.getInventory().getHolder();
-        if (holder instanceof MainEditorGui || holder instanceof BoxEditorGui || holder instanceof RewardEditorGui) {
-            e.setCancelled(true);
+        if (!(holder instanceof MainEditorGui || holder instanceof BoxEditorGui || holder instanceof RewardEditorGui)) return;
+        int topSize = e.getInventory().getSize();
+        for (int slot : e.getRawSlots()) {
+            if (slot < topSize) { e.setCancelled(true); return; }
         }
     }
 
@@ -91,14 +96,20 @@ public final class EditorListener implements Listener {
         BoxDraft draft = gui.getDraft();
         EditorManager em = plugin.getEditorManager();
 
-        // ── Box item: capture from main hand ──────────────────────────────────
+        // ── Box item: capture from cursor ─────────────────────────────────────
         if (slot == BoxEditorGui.SLOT_BOX_ITEM) {
-            ItemStack held = player.getInventory().getItemInMainHand();
-            if (held.getType().isAir()) {
+            ItemStack cursor = e.getCursor();
+            if (cursor == null || cursor.getType().isAir()) {
                 player.sendMessage(plugin.getMessageConfig().get("editor-hold-item")); return;
             }
-            draft.setBoxItem(held.clone());
-            new BoxEditorGui(plugin, player, draft, gui.getRewardPage()).open();
+            ItemStack captured = cursor.clone();
+            draft.setBoxItem(captured);
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                player.setItemOnCursor(null);
+                player.getInventory().addItem(captured.clone()).values()
+                    .forEach(it -> player.getWorld().dropItemNaturally(player.getLocation(), it));
+                new BoxEditorGui(plugin, player, draft, gui.getRewardPage()).open();
+            }, 1L);
             return;
         }
 
@@ -251,14 +262,20 @@ public final class EditorListener implements Listener {
             return;
         }
 
-        // ── Capture reward item ───────────────────────────────────────────────
+        // ── Capture reward item from cursor ──────────────────────────────────
         if (slot == RewardEditorGui.SLOT_DISPLAY_ITEM) {
-            ItemStack held = player.getInventory().getItemInMainHand();
-            if (held.getType().isAir()) {
+            ItemStack cursor = e.getCursor();
+            if (cursor == null || cursor.getType().isAir()) {
                 player.sendMessage(plugin.getMessageConfig().get("editor-hold-item")); return;
             }
-            reward.setDisplayItem(held.clone());
-            new RewardEditorGui(plugin, player, reward, gui.getRewardIndex()).open();
+            ItemStack captured = cursor.clone();
+            reward.setDisplayItem(captured);
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                player.setItemOnCursor(null);
+                player.getInventory().addItem(captured.clone()).values()
+                    .forEach(it -> player.getWorld().dropItemNaturally(player.getLocation(), it));
+                new RewardEditorGui(plugin, player, reward, gui.getRewardIndex()).open();
+            }, 1L);
             return;
         }
 

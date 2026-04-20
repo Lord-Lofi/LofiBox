@@ -11,6 +11,9 @@ public final class ConfigManager {
     private String defaultOpenSound;
     private String defaultWinSound;
     private boolean winFirework;
+    private boolean headFoundBroadcast;
+    private boolean discordHeadAnnounce;
+    private String discordChannel;
 
     public ConfigManager(LofiBox plugin) {
         this.plugin = plugin;
@@ -28,11 +31,17 @@ public final class ConfigManager {
         defaultOpenSound     = cfg.getString("default-open-sound", "block.chest.open");
         defaultWinSound      = cfg.getString("default-win-sound", "entity.player.levelup");
         winFirework          = cfg.getBoolean("win-firework", true);
+        headFoundBroadcast   = cfg.getBoolean("head-found-broadcast", true);
+        discordHeadAnnounce  = cfg.getBoolean("discord-head-announce", false);
+        discordChannel       = cfg.getString("discord-channel", "chat");
     }
 
-    public String getFullInventoryAction() { return fullInventoryAction; }
-    public boolean isPreviewShowWeights()  { return previewShowWeights; }
-    public String getDefaultOpenSound()    { return defaultOpenSound; }
-    public String getDefaultWinSound()     { return defaultWinSound; }
-    public boolean isWinFirework()         { return winFirework; }
+    public String getFullInventoryAction()  { return fullInventoryAction; }
+    public boolean isPreviewShowWeights()   { return previewShowWeights; }
+    public String getDefaultOpenSound()     { return defaultOpenSound; }
+    public String getDefaultWinSound()      { return defaultWinSound; }
+    public boolean isWinFirework()          { return winFirework; }
+    public boolean isHeadFoundBroadcast()   { return headFoundBroadcast; }
+    public boolean isDiscordHeadAnnounce()  { return discordHeadAnnounce; }
+    public String getDiscordChannel()       { return discordChannel; }
 }

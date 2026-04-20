@@ -1,0 +1,54 @@
+# Bonus: 5% chance of a second head December 1 through January 31.
+name: "<gradient:#bfdbfe:#93c5fd>✦ Winter Crate ✦</gradient>"
+
+item:
+  material: BLUE_ICE
+  name: "<gradient:#bfdbfe:#93c5fd>✦ Winter Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains winter-themed heads"
+    - "<dark_gray>Dec–Jan: 5% double head chance"
+
+sounds:
+  win: "block.note_block.chime"
+
+rewards:
+
+  winter_head:
+    weight: 40
+    display-name: "<gradient:#bfdbfe:#93c5fd>Mystery Winter Head"
+    item:
+      head-database-category: "winter"
+      material: PLAYER_HEAD
+      name: "<gradient:#bfdbfe:#93c5fd>Mystery Winter Head"
+    actions:
+      - "[message] <gradient:#bfdbfe:#93c5fd>You found a Mystery Winter Head!"
+
+  snow_block:
+    weight: 30
+    display-name: "<white>Snow Block x4"
+    item:
+      material: SNOW_BLOCK
+      name: "<white>Snow Block"
+      amount: 4
+    actions:
+      - "[message] <white>You received 4 Snow Blocks."
+
+  blue_ice:
+    weight: 20
+    display-name: "<aqua>Blue Ice"
+    item:
+      material: BLUE_ICE
+      name: "<aqua>Blue Ice"
+    actions:
+      - "[message] <aqua>You received a Blue Ice block!"
+
+  powder_snow_bucket:
+    weight: 10
+    display-name: "<white>Powder Snow Bucket"
+    item:
+      material: POWDER_SNOW_BUCKET
+      name: "<white>Powder Snow Bucket"
+    actions:
+      - "[message] <white>You received a Powder Snow Bucket!"

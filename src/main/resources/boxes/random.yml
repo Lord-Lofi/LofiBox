@@ -1,0 +1,53 @@
+name: "<gradient:#6366f1:#f59e0b:#22c55e>✦ Mystery Head Crate ✦</gradient>"
+
+item:
+  material: NETHER_STAR
+  name: "<gradient:#6366f1:#f59e0b:#22c55e>✦ Mystery Head Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>A completely random head from"
+    - "<dark_gray>the entire HeadDatabase!"
+
+sounds:
+  win: "ui.toast.challenge_complete"
+
+rewards:
+
+  random_head:
+    weight: 50
+    display-name: "<gradient:#6366f1:#f59e0b>Mystery Head"
+    item:
+      head-database-category: "random"
+      material: PLAYER_HEAD
+      name: "<gradient:#6366f1:#f59e0b>Mystery Head"
+    actions:
+      - "[message] <gradient:#6366f1:#f59e0b>You found a Mystery Head!"
+
+  diamond:
+    weight: 25
+    display-name: "<aqua>Diamond"
+    item:
+      material: DIAMOND
+      name: "<aqua>Diamond"
+    actions:
+      - "[message] <aqua>You received a Diamond."
+
+  netherite_scrap:
+    weight: 15
+    display-name: "<dark_purple>Netherite Scrap"
+    item:
+      material: NETHERITE_SCRAP
+      name: "<dark_purple>Netherite Scrap"
+    actions:
+      - "[message] <dark_purple>You received Netherite Scrap!"
+
+  nether_star:
+    weight: 10
+    display-name: "<yellow>Nether Star"
+    item:
+      material: NETHER_STAR
+      name: "<yellow>Nether Star"
+    actions:
+      - "[message] <yellow>You received a Nether Star!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

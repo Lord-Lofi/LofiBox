@@ -1,0 +1,51 @@
+name: "<gradient:#a3e635:#facc15>✦ Insect Crate ✦</gradient>"
+
+item:
+  material: HONEYCOMB
+  name: "<gradient:#a3e635:#facc15>✦ Insect Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains insect-themed heads"
+
+rewards:
+
+  insect_head:
+    weight: 40
+    display-name: "<gradient:#a3e635:#facc15>Mystery Insect Head"
+    item:
+      head-database-category: "insects"
+      material: PLAYER_HEAD
+      name: "<gradient:#a3e635:#facc15>Mystery Insect Head"
+    actions:
+      - "[message] <gradient:#a3e635:#facc15>You found a Mystery Insect Head!"
+
+  honeycomb:
+    weight: 30
+    display-name: "<gold>Honeycomb x8"
+    item:
+      material: HONEYCOMB
+      name: "<gold>Honeycomb"
+      amount: 8
+    actions:
+      - "[message] <gold>You received 8 Honeycombs."
+
+  honey_bottle:
+    weight: 20
+    display-name: "<yellow>Honey Bottle x4"
+    item:
+      material: HONEY_BOTTLE
+      name: "<yellow>Honey Bottle"
+      amount: 4
+    actions:
+      - "[message] <yellow>You received 4 Honey Bottles!"
+
+  string:
+    weight: 10
+    display-name: "<white>String x16"
+    item:
+      material: STRING
+      name: "<white>String"
+      amount: 16
+    actions:
+      - "[message] <white>You received 16 String!"

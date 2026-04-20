@@ -1,0 +1,55 @@
+# Seasonal: head pool active October 1 through November 15.
+# The Halloween head reward falls back to a Carved Pumpkin outside that window.
+name: "<gradient:#f97316:#7c3aed>✦ Halloween Crate ✦</gradient>"
+
+item:
+  material: JACK_O_LANTERN
+  name: "<gradient:#f97316:#7c3aed>✦ Halloween Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Seasonal: October 1 — November 15"
+
+sounds:
+  open: "entity.ender_dragon.growl"
+
+rewards:
+
+  halloween_head:
+    weight: 40
+    display-name: "<gradient:#f97316:#7c3aed>Mystery Halloween Head"
+    item:
+      head-database-category: "halloween"
+      material: CARVED_PUMPKIN
+      name: "<gradient:#f97316:#7c3aed>Mystery Halloween Head"
+    actions:
+      - "[message] <gradient:#f97316:#7c3aed>You found a Mystery Halloween Head!"
+
+  carved_pumpkin:
+    weight: 30
+    display-name: "<orange>Carved Pumpkin"
+    item:
+      material: CARVED_PUMPKIN
+      name: "<gold>Carved Pumpkin"
+    actions:
+      - "[message] <gold>You received a Carved Pumpkin."
+
+  spider_eye:
+    weight: 20
+    display-name: "<red>Spider Eye x8"
+    item:
+      material: SPIDER_EYE
+      name: "<red>Spider Eye"
+      amount: 8
+    actions:
+      - "[message] <red>You received 8 Spider Eyes!"
+
+  wither_skull:
+    weight: 10
+    display-name: "<dark_gray>Wither Skull"
+    item:
+      material: WITHER_SKELETON_SKULL
+      name: "<dark_gray>Wither Skull"
+    actions:
+      - "[message] <dark_gray>You found a Wither Skull!"
+      - "[sound] ENTITY_WITHER_SPAWN"

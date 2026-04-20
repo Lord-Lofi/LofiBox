@@ -1,0 +1,48 @@
+name: "<light_purple>✦ Humanoid Crate ✦</light_purple>"
+
+item:
+  material: ARMOR_STAND
+  name: "<light_purple>✦ Humanoid Crate ✦</light_purple>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains humanoid character heads"
+
+rewards:
+
+  humanoid_head:
+    weight: 40
+    display-name: "<light_purple>Mystery Humanoid Head"
+    item:
+      head-database-category: "humanoid"
+      material: PLAYER_HEAD
+      name: "<light_purple>Mystery Humanoid Head"
+    actions:
+      - "[message] <light_purple>You found a Mystery Humanoid Head!"
+
+  armor_stand:
+    weight: 30
+    display-name: "<gray>Armor Stand"
+    item:
+      material: ARMOR_STAND
+      name: "<gray>Armor Stand"
+    actions:
+      - "[message] <gray>You received an Armor Stand."
+
+  banner:
+    weight: 20
+    display-name: "<light_purple>Purple Banner"
+    item:
+      material: PURPLE_BANNER
+      name: "<light_purple>Purple Banner"
+    actions:
+      - "[message] <light_purple>You received a Purple Banner!"
+
+  totem:
+    weight: 10
+    display-name: "<gold>Totem of Undying"
+    item:
+      material: TOTEM_OF_UNDYING
+      name: "<gold>Totem of Undying"
+    actions:
+      - "[message] <gold>You received a Totem of Undying!"
