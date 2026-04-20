@@ -1,0 +1,56 @@
+# Bonus: 5% chance of a second head during October 1 — November 15 (Halloween season).
+name: "<gradient:#dc2626:#7f1d1d>✦ Monster Crate ✦</gradient>"
+
+item:
+  material: ROTTEN_FLESH
+  name: "<gradient:#dc2626:#7f1d1d>✦ Monster Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains monster heads"
+    - "<dark_gray>Oct 1–Nov 15: 5% double head chance"
+
+sounds:
+  open: "entity.ender_dragon.growl"
+
+rewards:
+
+  monster_head:
+    weight: 40
+    display-name: "<gradient:#dc2626:#7f1d1d>Mystery Monster Head"
+    item:
+      head-database-category: "monsters"
+      material: PLAYER_HEAD
+      name: "<gradient:#dc2626:#7f1d1d>Mystery Monster Head"
+    actions:
+      - "[message] <gradient:#dc2626:#7f1d1d>You found a Mystery Monster Head!"
+
+  rotten_flesh:
+    weight: 30
+    display-name: "<dark_green>Rotten Flesh x16"
+    item:
+      material: ROTTEN_FLESH
+      name: "<dark_green>Rotten Flesh"
+      amount: 16
+    actions:
+      - "[message] <dark_green>You received 16 Rotten Flesh."
+
+  spider_eye:
+    weight: 20
+    display-name: "<red>Spider Eye x8"
+    item:
+      material: SPIDER_EYE
+      name: "<red>Spider Eye"
+      amount: 8
+    actions:
+      - "[message] <red>You received 8 Spider Eyes!"
+
+  wither_skull:
+    weight: 10
+    display-name: "<dark_gray>Wither Skull"
+    item:
+      material: WITHER_SKELETON_SKULL
+      name: "<dark_gray>Wither Skull"
+    actions:
+      - "[message] <dark_gray>You found a Wither Skull!"
+      - "[sound] ENTITY_WITHER_SPAWN"

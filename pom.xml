@@ -6,7 +6,7 @@
 
     <groupId>dev.lofibox</groupId>
     <artifactId>LofiBox</artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
     <packaging>jar</packaging>
 
     <name>LofiBox</name>
@@ -29,6 +29,10 @@
         <repository>
             <id>jitpack</id>
             <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>essentialsx-repo</id>
+            <url>https://repo.essentialsx.net/releases/</url>
         </repository>
         <repository>
             <id>luckperms</id>
@@ -65,6 +69,12 @@
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.essentialsx</groupId>
+            <artifactId>EssentialsXDiscord</artifactId>
+            <version>2.20.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

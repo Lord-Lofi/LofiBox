@@ -1,0 +1,49 @@
+name: "<gradient:#0ea5e9:#06b6d4>✦ Ocean Crate ✦</gradient>"
+
+item:
+  material: NAUTILUS_SHELL
+  name: "<gradient:#0ea5e9:#06b6d4>✦ Ocean Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains ocean-themed heads"
+
+rewards:
+
+  ocean_head:
+    weight: 40
+    display-name: "<gradient:#0ea5e9:#06b6d4>Mystery Ocean Head"
+    item:
+      head-database-category: "ocean"
+      material: PLAYER_HEAD
+      name: "<gradient:#0ea5e9:#06b6d4>Mystery Ocean Head"
+    actions:
+      - "[message] <gradient:#0ea5e9:#06b6d4>You found a Mystery Ocean Head!"
+
+  nautilus_shell:
+    weight: 25
+    display-name: "<aqua>Nautilus Shell"
+    item:
+      material: NAUTILUS_SHELL
+      name: "<aqua>Nautilus Shell"
+    actions:
+      - "[message] <aqua>You received a Nautilus Shell."
+
+  heart_of_the_sea:
+    weight: 25
+    display-name: "<dark_aqua>Heart of the Sea"
+    item:
+      material: HEART_OF_THE_SEA
+      name: "<dark_aqua>Heart of the Sea"
+    actions:
+      - "[message] <dark_aqua>You received a Heart of the Sea!"
+
+  trident:
+    weight: 10
+    display-name: "<blue>Trident"
+    item:
+      material: TRIDENT
+      name: "<blue>Trident"
+    actions:
+      - "[message] <blue>Poseidon smiles upon you — you received a Trident!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

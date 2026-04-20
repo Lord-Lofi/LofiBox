@@ -1,0 +1,49 @@
+name: "<aqua>✦ Human Crate ✦</aqua>"
+
+item:
+  material: PLAYER_HEAD
+  name: "<aqua>✦ Human Crate ✦</aqua>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains human character heads"
+
+rewards:
+
+  human_head:
+    weight: 40
+    display-name: "<aqua>Mystery Human Head"
+    item:
+      head-database-category: "humans"
+      material: PLAYER_HEAD
+      name: "<aqua>Mystery Human Head"
+    actions:
+      - "[message] <aqua>You found a Mystery Human Head!"
+
+  book:
+    weight: 30
+    display-name: "<white>Book"
+    item:
+      material: BOOK
+      name: "<white>Book"
+    actions:
+      - "[message] <white>You received a Book."
+
+  experience_bottle:
+    weight: 20
+    display-name: "<green>Bottle o' Enchanting x4"
+    item:
+      material: EXPERIENCE_BOTTLE
+      name: "<green>Bottle o' Enchanting"
+      amount: 4
+    actions:
+      - "[message] <green>You received 4 Bottles o' Enchanting!"
+
+  name_tag:
+    weight: 10
+    display-name: "<aqua>Name Tag"
+    item:
+      material: NAME_TAG
+      name: "<aqua>Name Tag"
+    actions:
+      - "[message] <aqua>You received a Name Tag!"

@@ -1,0 +1,53 @@
+# Seasonal: head pool active November 15 through November 30.
+# The Thanksgiving head reward falls back to a Pumpkin outside that window.
+name: "<gradient:#f97316:#92400e>✦ Thanksgiving Crate ✦</gradient>"
+
+item:
+  material: PUMPKIN
+  name: "<gradient:#f97316:#92400e>✦ Thanksgiving Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Seasonal: November 15 — November 30"
+
+rewards:
+
+  thanksgiving_head:
+    weight: 40
+    display-name: "<gradient:#f97316:#92400e>Mystery Thanksgiving Head"
+    item:
+      head-database-category: "thanksgiving"
+      material: PUMPKIN
+      name: "<gradient:#f97316:#92400e>Mystery Thanksgiving Head"
+    actions:
+      - "[message] <gradient:#f97316:#92400e>You found a Mystery Thanksgiving Head!"
+
+  cooked_chicken:
+    weight: 30
+    display-name: "<yellow>Cooked Chicken x8"
+    item:
+      material: COOKED_CHICKEN
+      name: "<yellow>Cooked Chicken"
+      amount: 8
+    actions:
+      - "[message] <yellow>You received 8 Cooked Chicken."
+
+  pumpkin_pie:
+    weight: 20
+    display-name: "<gold>Pumpkin Pie x4"
+    item:
+      material: PUMPKIN_PIE
+      name: "<gold>Pumpkin Pie"
+      amount: 4
+    actions:
+      - "[message] <gold>You received 4 Pumpkin Pies!"
+
+  bread:
+    weight: 10
+    display-name: "<yellow>Bread x16"
+    item:
+      material: BREAD
+      name: "<yellow>Bread"
+      amount: 16
+    actions:
+      - "[message] <yellow>You received 16 Bread!"

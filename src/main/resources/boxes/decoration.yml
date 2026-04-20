@@ -1,0 +1,49 @@
+name: "<gold>✦ Decoration Crate ✦</gold>"
+
+item:
+  material: LANTERN
+  name: "<gold>✦ Decoration Crate ✦</gold>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains decoration-themed heads"
+
+rewards:
+
+  decoration_head:
+    weight: 40
+    display-name: "<gold>Mystery Decoration Head"
+    item:
+      head-database-category: "decoration"
+      material: PLAYER_HEAD
+      name: "<gold>Mystery Decoration Head"
+    actions:
+      - "[message] <gold>You found a Mystery Decoration Head!"
+
+  lantern:
+    weight: 30
+    display-name: "<yellow>Lantern"
+    item:
+      material: LANTERN
+      name: "<yellow>Lantern"
+    actions:
+      - "[message] <yellow>You received a Lantern."
+
+  end_rod:
+    weight: 20
+    display-name: "<white>End Rod"
+    item:
+      material: END_ROD
+      name: "<white>End Rod"
+    actions:
+      - "[message] <white>You received an End Rod!"
+
+  glow_ink_sac:
+    weight: 10
+    display-name: "<aqua>Glow Ink Sac x4"
+    item:
+      material: GLOW_INK_SAC
+      name: "<aqua>Glow Ink Sac"
+      amount: 4
+    actions:
+      - "[message] <aqua>You received 4 Glow Ink Sacs!"

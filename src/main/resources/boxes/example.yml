@@ -118,11 +118,23 @@ rewards:
       - "[message] <green>You received a random animal head!"
 
   # ── Legendary (permission-gated example) ─────────────────────────────────
+  #
+  # Only players who hold the permission below can land on this reward.
+  # Players without it are silently re-rolled. Admins with lofibox.bypass
+  # always see it regardless of permission state.
+  #
+  # LuckPerms — grant to a single player:
+  #   /lp user <player> permission set lofibox.vip true
+  #
+  # LuckPerms — grant to a group (e.g. your VIP rank group):
+  #   /lp group vip permission set lofibox.vip true
+  #
+  # LuckPerms — time-limited grant (7 days):
+  #   /lp user <player> permission settemp lofibox.vip true 7d
+  #
   vip_crate_key:
     weight: 1
     display-name: "<gold>✦ VIP Crate Key ✦"
-    # Only players with this permission can win this reward.
-    # Re-rolls for players without it. Use lofibox.bypass to override.
     permission-required: "lofibox.vip"
     item:
       material: TRIPWIRE_HOOK

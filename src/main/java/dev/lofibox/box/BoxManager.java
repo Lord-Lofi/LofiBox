@@ -30,12 +30,26 @@ public final class BoxManager {
 
     // ── Loading ───────────────────────────────────────────────────────────────
 
+    private static final List<String> DEFAULT_BOX_FILES = List.of(
+        "example.yml",
+        "alphanumeric.yml", "animals.yml",    "anime.yml",         "blocks.yml",
+        "christmas.yml",    "decoration.yml",  "dinosaur.yml",      "easter.yml",
+        "fantasy.yml",      "flags.yml",       "food_and_drink.yml","furniture.yml",
+        "halloween.yml",    "humanoid.yml",    "humans.yml",        "insects.yml",
+        "miscellaneous.yml","monsters.yml",    "mythology.yml",     "ocean.yml",
+        "plants.yml",       "plushie.yml",     "pokemon.yml",       "random.yml",
+        "space.yml",        "st_patricks.yml", "star_wars.yml",     "thanksgiving.yml",
+        "valentine.yml",    "vehicles.yml",    "villager.yml",      "winter.yml"
+    );
+
     public void loadAll() {
         boxes.clear();
         File dir = new File(plugin.getDataFolder(), "boxes");
         if (!dir.exists()) {
             dir.mkdirs();
-            plugin.saveResource("boxes/example.yml", false);
+            for (String name : DEFAULT_BOX_FILES) {
+                try { plugin.saveResource("boxes/" + name, false); } catch (Exception ignored) {}
+            }
         }
         File[] files = dir.listFiles((d, n) -> n.endsWith(".yml"));
         if (files == null) return;

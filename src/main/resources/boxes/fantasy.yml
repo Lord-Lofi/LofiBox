@@ -1,0 +1,52 @@
+name: "<gradient:#7c3aed:#a78bfa>✦ Fantasy Crate ✦</gradient>"
+
+item:
+  material: ENCHANTED_BOOK
+  name: "<gradient:#7c3aed:#a78bfa>✦ Fantasy Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains fantasy & magic heads"
+
+sounds:
+  win: "block.amethyst_block.chime"
+
+rewards:
+
+  fantasy_head:
+    weight: 40
+    display-name: "<gradient:#7c3aed:#a78bfa>Mystery Fantasy Head"
+    item:
+      head-database-category: "fantasy"
+      material: PLAYER_HEAD
+      name: "<gradient:#7c3aed:#a78bfa>Mystery Fantasy Head"
+    actions:
+      - "[message] <gradient:#7c3aed:#a78bfa>You found a Mystery Fantasy Head!"
+
+  enchanted_book:
+    weight: 30
+    display-name: "<light_purple>Enchanted Book"
+    item:
+      material: ENCHANTED_BOOK
+      name: "<light_purple>Enchanted Book"
+    actions:
+      - "[message] <light_purple>You received an Enchanted Book."
+
+  totem:
+    weight: 20
+    display-name: "<gold>Totem of Undying"
+    item:
+      material: TOTEM_OF_UNDYING
+      name: "<gold>Totem of Undying"
+    actions:
+      - "[message] <gold>You received a Totem of Undying!"
+
+  nether_star:
+    weight: 10
+    display-name: "<yellow>Nether Star"
+    item:
+      material: NETHER_STAR
+      name: "<yellow>★ Nether Star"
+    actions:
+      - "[message] <yellow>★ You received a Nether Star!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

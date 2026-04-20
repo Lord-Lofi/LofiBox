@@ -1,0 +1,48 @@
+name: "<green>✦ Animal Crate ✦</green>"
+
+item:
+  material: OAK_LEAVES
+  name: "<green>✦ Animal Crate ✦</green>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains random animal heads"
+
+rewards:
+
+  animal_head:
+    weight: 40
+    display-name: "<green>Mystery Animal Head"
+    item:
+      head-database-category: "animals"
+      material: PLAYER_HEAD
+      name: "<green>Mystery Animal Head"
+    actions:
+      - "[message] <green>You found a Mystery Animal Head!"
+
+  lead:
+    weight: 30
+    display-name: "<yellow>Lead"
+    item:
+      material: LEAD
+      name: "<yellow>Lead"
+    actions:
+      - "[message] <yellow>You received a Lead."
+
+  saddle:
+    weight: 20
+    display-name: "<gold>Saddle"
+    item:
+      material: SADDLE
+      name: "<gold>Saddle"
+    actions:
+      - "[message] <gold>You received a Saddle!"
+
+  name_tag:
+    weight: 10
+    display-name: "<aqua>Name Tag"
+    item:
+      material: NAME_TAG
+      name: "<aqua>Name Tag"
+    actions:
+      - "[message] <aqua>You received a Name Tag!"

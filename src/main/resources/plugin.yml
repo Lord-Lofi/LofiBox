@@ -10,6 +10,7 @@ softdepend:
   - HeadDatabase
   - LuckPerms
   - Vault
+  - EssentialsDiscord
 
 commands:
   lofibox:
@@ -30,8 +31,11 @@ permissions:
   lofibox.reload:
     description: Reload configs.
     default: op
+  lofibox.stats:
+    description: View your own stats GUI via /lofibox stats.
+    default: false
   lofibox.stats.others:
-    description: View another player's stats.
+    description: View another player's stats (also opens GUI for them when run as console).
     default: op
   lofibox.bypass:
     description: Bypass permission-gated rewards.

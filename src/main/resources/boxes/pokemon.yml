@@ -1,0 +1,55 @@
+# Bonus: 50% chance of a second head on February 27 (Pokémon Anniversary).
+name: "<gradient:#ef4444:#facc15>✦ Pokémon Crate ✦</gradient>"
+
+item:
+  material: ENDER_EYE
+  name: "<gradient:#ef4444:#facc15>✦ Pokémon Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains Pokémon heads"
+    - "<dark_gray>Feb 27: 50% double head chance!"
+
+sounds:
+  win: "ui.toast.challenge_complete"
+
+rewards:
+
+  pokemon_head:
+    weight: 40
+    display-name: "<gradient:#ef4444:#facc15>Mystery Pokémon Head"
+    item:
+      head-database-category: "pokemon"
+      material: PLAYER_HEAD
+      name: "<gradient:#ef4444:#facc15>Mystery Pokémon Head"
+    actions:
+      - "[message] <gradient:#ef4444:#facc15>You found a Mystery Pokémon Head!"
+
+  ender_pearl:
+    weight: 30
+    display-name: "<dark_aqua>Ender Pearl x4"
+    item:
+      material: ENDER_PEARL
+      name: "<dark_aqua>Ender Pearl"
+      amount: 4
+    actions:
+      - "[message] <dark_aqua>You received 4 Ender Pearls."
+
+  nether_star:
+    weight: 20
+    display-name: "<yellow>Nether Star"
+    item:
+      material: NETHER_STAR
+      name: "<yellow>Nether Star"
+    actions:
+      - "[message] <yellow>You received a Nether Star!"
+
+  totem:
+    weight: 10
+    display-name: "<gold>Totem of Undying"
+    item:
+      material: TOTEM_OF_UNDYING
+      name: "<gold>Totem of Undying"
+    actions:
+      - "[message] <gold>Legendary catch! You received a Totem of Undying!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

@@ -1,0 +1,50 @@
+name: "<gradient:#22c55e:#86efac>✦ Nature Crate ✦</gradient>"
+
+item:
+  material: OAK_SAPLING
+  name: "<gradient:#22c55e:#86efac>✦ Nature Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains plant & nature heads"
+
+rewards:
+
+  plant_head:
+    weight: 40
+    display-name: "<gradient:#22c55e:#86efac>Mystery Nature Head"
+    item:
+      head-database-category: "plants"
+      material: PLAYER_HEAD
+      name: "<gradient:#22c55e:#86efac>Mystery Nature Head"
+    actions:
+      - "[message] <gradient:#22c55e:#86efac>You found a Mystery Nature Head!"
+
+  bamboo:
+    weight: 25
+    display-name: "<green>Bamboo x16"
+    item:
+      material: BAMBOO
+      name: "<green>Bamboo"
+      amount: 16
+    actions:
+      - "[message] <green>You received 16 Bamboo."
+
+  sweet_berries:
+    weight: 25
+    display-name: "<red>Sweet Berries x16"
+    item:
+      material: SWEET_BERRIES
+      name: "<red>Sweet Berries"
+      amount: 16
+    actions:
+      - "[message] <red>You received 16 Sweet Berries!"
+
+  big_dripleaf:
+    weight: 10
+    display-name: "<lime>Big Dripleaf"
+    item:
+      material: BIG_DRIPLEAF
+      name: "<lime>Big Dripleaf"
+    actions:
+      - "[message] <lime>You received a Big Dripleaf!"

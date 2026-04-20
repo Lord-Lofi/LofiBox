@@ -102,14 +102,14 @@ public final class BoxEditorGui implements InventoryHolder {
             if (m != null) {
                 m.displayName(MessageUtil.parse("<aqua>Box Item"));
                 m.lore(List.of(Component.empty(),
-                    MessageUtil.parse("<gray>Hold an item and left-click"),
-                    MessageUtil.parse("<gray>to replace the box item.")));
+                    MessageUtil.parse("<gray>Pick up an item onto your cursor,"),
+                    MessageUtil.parse("<gray>then click here to replace the box item.")));
                 bi.setItemMeta(m);
             }
             inv.setItem(SLOT_BOX_ITEM, bi);
         } else {
             inv.setItem(SLOT_BOX_ITEM, btn(Material.CHEST, "<aqua>Box Item",
-                List.of("<gray>Hold an item and left-click", "<gray>to set the box item.")));
+                List.of("<gray>Pick up an item onto your cursor,", "<gray>then click here to set the box item.")));
         }
 
         inv.setItem(SLOT_NAME, btn(Material.WRITABLE_BOOK, "<aqua>Display Name",

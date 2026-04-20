@@ -1,0 +1,53 @@
+# Seasonal: head pool active March 10 through March 20.
+# The St. Patrick's head reward falls back to a Green Wool outside that window.
+name: "<gradient:#16a34a:#86efac>✦ St. Patrick's Crate ✦</gradient>"
+
+item:
+  material: GREEN_WOOL
+  name: "<gradient:#16a34a:#86efac>✦ St. Patrick's Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Seasonal: March 10 — March 20"
+
+rewards:
+
+  patricks_head:
+    weight: 40
+    display-name: "<gradient:#16a34a:#86efac>Mystery St. Patrick's Head"
+    item:
+      head-database-category: "st_patricks"
+      material: GREEN_WOOL
+      name: "<gradient:#16a34a:#86efac>Mystery St. Patrick's Head"
+    actions:
+      - "[message] <gradient:#16a34a:#86efac>You found a Mystery St. Patrick's Head!"
+
+  emerald:
+    weight: 30
+    display-name: "<green>Emerald x8"
+    item:
+      material: EMERALD
+      name: "<green>Emerald"
+      amount: 8
+    actions:
+      - "[message] <green>You received 8 Emeralds. Lucky!"
+
+  green_dye:
+    weight: 20
+    display-name: "<dark_green>Green Dye x16"
+    item:
+      material: GREEN_DYE
+      name: "<dark_green>Green Dye"
+      amount: 16
+    actions:
+      - "[message] <dark_green>You received 16 Green Dye!"
+
+  emerald_block:
+    weight: 10
+    display-name: "<green>Emerald Block"
+    item:
+      material: EMERALD_BLOCK
+      name: "<green>Emerald Block"
+    actions:
+      - "[message] <green>Top o' the morning — you received an Emerald Block!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

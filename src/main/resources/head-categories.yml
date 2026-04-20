@@ -1,49 +1,244 @@
-# LofiBox Custom Head Categories
-# Define your own named pools backed by HeadDatabase search terms.
+# LofiBox Head Categories
+# Each entry defines a named pool of HeadDatabase heads.
 # Terms are matched case-insensitively against each head's name AND tags.
-# Multiple search terms per category are supported — the pool is the union of all matches.
-# Run /lofibox reload to rebuild pools after editing this file.
 #
-# Use head-database-category: "<name>" in any reward's item section to draw from a pool.
+# Fields:
+#   search:             One term (string) or multiple (list) — union of all matches.
+#   random:             true = pull from ALL HDB heads, ignores search.
+#   available-from:     MM-DD — start of seasonal window. Omit for year-round.
+#   available-to:       MM-DD — end of seasonal window. Dates wrap year-end automatically.
+#   double-chance:      0-100 — % chance to give a second bonus head on win.
+#   double-chance-from: MM-DD — start of window where double-chance is active. Omit = always active.
+#   double-chance-to:   MM-DD — end of window where double-chance is active.
+#
+# Run /lofibox reload to rebuild pools after editing.
 
 categories:
 
-  # Single search term
-  starwars:
-    search: "star wars"
+  # ── Year-round base categories ───────────────────────────────────────────────
 
-  # Multiple search terms — pool contains heads matching ANY of the terms
+  alphanumeric:
+    search: alphabet
+
+  animals:
+    search: animals
+
+  blocks:
+    search: blocks
+
+  decoration:
+    search: decoration
+
+  food_and_drink:
+    search: food_drinks
+
+  humanoid:
+    search: humanoid
+
+  humans:
+    search: humans
+
+  miscellaneous:
+    search: miscellaneous
+
+  plushie:
+    search: plushie
+
+  pokemon:
+    search: pokemon
+    double-chance: 50
+    double-chance-from: "02-27"
+    double-chance-to: "02-27"
+
+  villager:
+    search: villager
+
+  # ── Random — pulls from the entire HDB database ───────────────────────────────
+
+  random:
+    random: true
+
+  # ── Pop-culture & themed ──────────────────────────────────────────────────────
+
+  anime:
+    search:
+      - "naruto"
+      - "dragon ball"
+      - "one piece"
+      - "bleach"
+      - "ghibli"
+      - "demon slayer"
+      - "my hero"
+      - "sailor moon"
+      - "one punch"
+      - "attack on titan"
+      - "fairy tail"
+      - "fullmetal"
+      - "death note"
+      - "tokyo ghoul"
+      - "jujutsu"
+      - "hunter x hunter"
+      - "sword art"
+      - "re zero"
+
+  star_wars:
+    search:
+      - "star wars"
+      - "starwars"
+    double-chance: 50
+    double-chance-from: "05-04"
+    double-chance-to: "05-04"
+
+  # ── Fantasy & mythology ───────────────────────────────────────────────────────
+
   fantasy:
     search:
-      - "dragon"
       - "wizard"
+      - "witch"
+      - "fairy"
       - "elf"
       - "dwarf"
-      - "witch"
+      - "dragon"
+      - "potion"
+      - "crystal"
+      - "rune"
+      - "enchanted"
+      - "magic"
 
-  christmas:
+  mythology:
     search:
-      - "christmas"
-      - "santa"
-      - "snowman"
-      - "rudolph"
+      - "mythology"
+      - "greek"
+      - "norse"
+      - "roman"
+      - "zeus"
+      - "thor"
+      - "odin"
+
+  # ── Nature & world ────────────────────────────────────────────────────────────
+
+  animals_wild:
+    search:
+      - "animal"
+      - "wildlife"
+
+  dinosaur:
+    search: dinosaur
+
+  insects:
+    search: insect
+
+  ocean:
+    search:
+      - "ocean"
+      - "sea"
+      - "fish"
+      - "shark"
+      - "whale"
+      - "coral"
+
+  plants:
+    search:
+      - "plant"
+      - "flower"
+      - "nature"
+      - "tree"
+      - "mushroom"
+
+  # ── Space ─────────────────────────────────────────────────────────────────────
 
   space:
     search:
+      - "space"
+      - "galaxy"
       - "astronaut"
       - "alien"
-      - "rocket"
       - "planet"
+      - "rocket"
+      - "cosmos"
 
-  zombies:
-    search:
-      - "zombie"
-      - "undead"
+  # ── Objects & building ────────────────────────────────────────────────────────
 
-  food:
+  flags:
     search:
-      - "burger"
-      - "pizza"
-      - "sushi"
-      - "taco"
-      - "cake"
+      - "flag"
+      - "country"
+
+  furniture:
+    search: furniture
+
+  vehicles:
+    search:
+      - "vehicle"
+      - "car"
+      - "truck"
+      - "train"
+      - "boat"
+      - "plane"
+
+  # ── Monsters (double-chance during Halloween season) ──────────────────────────
+
+  monsters:
+    search: monsters
+    double-chance: 5
+    double-chance-from: "10-01"
+    double-chance-to: "11-15"
+
+  # ── Seasonal — Halloween ──────────────────────────────────────────────────────
+
+  halloween:
+    search: halloween
+    available-from: "10-01"
+    available-to: "11-15"
+
+  # ── Seasonal — Christmas & Winter ─────────────────────────────────────────────
+
+  christmas:
+    search: christmas
+    available-from: "12-01"
+    available-to: "01-31"
+
+  winter:
+    search: winter
+    double-chance: 5
+    double-chance-from: "12-01"
+    double-chance-to: "01-31"
+
+  # ── Seasonal — Valentine's Day ────────────────────────────────────────────────
+
+  valentine:
+    search:
+      - "love"
+      - "heart"
+      - "valentine"
+    available-from: "02-01"
+    available-to: "02-21"
+
+  # ── Seasonal — Easter ─────────────────────────────────────────────────────────
+
+  easter:
+    search: easter
+    available-from: "03-20"
+    available-to: "04-20"
+
+  # ── Seasonal — St. Patrick's Day ──────────────────────────────────────────────
+
+  st_patricks:
+    search:
+      - "irish"
+      - "clover"
+      - "shamrock"
+      - "leprechaun"
+    available-from: "03-10"
+    available-to: "03-20"
+
+  # ── Seasonal — Thanksgiving ───────────────────────────────────────────────────
+
+  thanksgiving:
+    search:
+      - "thanksgiving"
+      - "turkey"
+      - "harvest"
+      - "pilgrim"
+    available-from: "11-15"
+    available-to: "11-30"

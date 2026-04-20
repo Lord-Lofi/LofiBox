@@ -1,0 +1,48 @@
+name: "<gray>✦ Block Crate ✦</gray>"
+
+item:
+  material: SMOOTH_STONE
+  name: "<gray>✦ Block Crate ✦</gray>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains block-themed heads"
+
+rewards:
+
+  block_head:
+    weight: 40
+    display-name: "<gray>Mystery Block Head"
+    item:
+      head-database-category: "blocks"
+      material: PLAYER_HEAD
+      name: "<gray>Mystery Block Head"
+    actions:
+      - "[message] <gray>You found a Mystery Block Head!"
+
+  slime_block:
+    weight: 30
+    display-name: "<green>Slime Block"
+    item:
+      material: SLIME_BLOCK
+      name: "<green>Slime Block"
+    actions:
+      - "[message] <green>You received a Slime Block."
+
+  honey_block:
+    weight: 20
+    display-name: "<gold>Honey Block"
+    item:
+      material: HONEY_BLOCK
+      name: "<gold>Honey Block"
+    actions:
+      - "[message] <gold>You received a Honey Block!"
+
+  sponge:
+    weight: 10
+    display-name: "<yellow>Sponge"
+    item:
+      material: SPONGE
+      name: "<yellow>Sponge"
+    actions:
+      - "[message] <yellow>You received a Sponge!"
