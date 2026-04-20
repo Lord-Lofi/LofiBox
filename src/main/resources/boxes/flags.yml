@@ -1,0 +1,49 @@
+name: "<gradient:#ef4444:#3b82f6>✦ Flag Crate ✦</gradient>"
+
+item:
+  material: WHITE_BANNER
+  name: "<gradient:#ef4444:#3b82f6>✦ Flag Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains flag & country heads"
+
+rewards:
+
+  flag_head:
+    weight: 40
+    display-name: "<gradient:#ef4444:#3b82f6>Mystery Flag Head"
+    item:
+      head-database-category: "flags"
+      material: PLAYER_HEAD
+      name: "<gradient:#ef4444:#3b82f6>Mystery Flag Head"
+    actions:
+      - "[message] <gradient:#ef4444:#3b82f6>You found a Mystery Flag Head!"
+
+  banner:
+    weight: 30
+    display-name: "<white>White Banner"
+    item:
+      material: WHITE_BANNER
+      name: "<white>White Banner"
+    actions:
+      - "[message] <white>You received a White Banner."
+
+  map:
+    weight: 20
+    display-name: "<yellow>Map"
+    item:
+      material: MAP
+      name: "<yellow>Map"
+    actions:
+      - "[message] <yellow>You received a Map!"
+
+  firework:
+    weight: 10
+    display-name: "<red>Firework Rocket x4"
+    item:
+      material: FIREWORK_ROCKET
+      name: "<red>Firework Rocket"
+      amount: 4
+    actions:
+      - "[message] <red>You received 4 Firework Rockets!"

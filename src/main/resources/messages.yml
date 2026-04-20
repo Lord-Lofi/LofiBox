@@ -25,6 +25,11 @@ vault-charged: "<prefix><gray>You were charged <white>{cost}<gray>."
 # Reward won
 reward-won: "<newline><gradient:#6366f1:#a78bfa>  ✦ Congratulations! ✦</gradient><newline>  <gray>You won <white>{reward}<gray> from <white>{box}<gray>!<newline>"
 
+# Server-wide broadcast when a player wins a HeadDatabase head reward.
+# {player} = player name, {head} = plain-text head name
+head-found-broadcast: "<gradient:#6366f1:#a78bfa>{player}</gradient> <gray>found a <white>{head}<gray>!"
+head-double-reward: "<gradient:#f59e0b:#fbbf24>✦ BONUS!</gradient> <gradient:#6366f1:#a78bfa>{player}</gradient> <gray>also received a bonus <white>{head}<gray>!"
+
 # Inventory full
 inventory-full: "<prefix><yellow>Your inventory was full — your reward dropped at your feet."
 
@@ -53,7 +58,7 @@ editor-box-id-taken: "<prefix><red>A box with ID '<white>{id}<red>' already exis
 editor-save-success: "<prefix><green>Box '<white>{box}<green>' saved and reloaded."
 editor-save-error: "<prefix><red>Could not save: <white>{error}"
 editor-deleted: "<prefix><yellow>Box '<white>{box}<yellow>' deleted."
-editor-hold-item: "<prefix><red>Hold an item in your main hand first."
+editor-hold-item: "<prefix><red>Pick up an item onto your cursor first, then click the slot."
 editor-invalid-number: "<prefix><red>That is not a valid number."
 editor-shift-to-delete: "<prefix><red>Shift-click to confirm deletion."
 editor-reward-no-item: "<prefix><red>Set the reward item before saving."

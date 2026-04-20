@@ -1,0 +1,48 @@
+name: "<gradient:#92400e:#d97706>✦ Furniture Crate ✦</gradient>"
+
+item:
+  material: BARREL
+  name: "<gradient:#92400e:#d97706>✦ Furniture Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains furniture-themed heads"
+
+rewards:
+
+  furniture_head:
+    weight: 40
+    display-name: "<gradient:#92400e:#d97706>Mystery Furniture Head"
+    item:
+      head-database-category: "furniture"
+      material: PLAYER_HEAD
+      name: "<gradient:#92400e:#d97706>Mystery Furniture Head"
+    actions:
+      - "[message] <gradient:#92400e:#d97706>You found a Mystery Furniture Head!"
+
+  barrel:
+    weight: 30
+    display-name: "<yellow>Barrel"
+    item:
+      material: BARREL
+      name: "<yellow>Barrel"
+    actions:
+      - "[message] <yellow>You received a Barrel."
+
+  flower_pot:
+    weight: 20
+    display-name: "<orange>Flower Pot"
+    item:
+      material: FLOWER_POT
+      name: "<gold>Flower Pot"
+    actions:
+      - "[message] <gold>You received a Flower Pot!"
+
+  bookshelf:
+    weight: 10
+    display-name: "<white>Bookshelf"
+    item:
+      material: BOOKSHELF
+      name: "<white>Bookshelf"
+    actions:
+      - "[message] <white>You received a Bookshelf!"

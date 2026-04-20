@@ -1,0 +1,50 @@
+name: "<gradient:#f97316:#ef4444>✦ Food & Drink Crate ✦</gradient>"
+
+item:
+  material: CAKE
+  name: "<gradient:#f97316:#ef4444>✦ Food & Drink Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains food & drink heads"
+
+rewards:
+
+  food_head:
+    weight: 40
+    display-name: "<gradient:#f97316:#ef4444>Mystery Food Head"
+    item:
+      head-database-category: "food_and_drink"
+      material: PLAYER_HEAD
+      name: "<gradient:#f97316:#ef4444>Mystery Food Head"
+    actions:
+      - "[message] <gradient:#f97316:#ef4444>You found a Mystery Food Head!"
+
+  cake:
+    weight: 25
+    display-name: "<yellow>Cake"
+    item:
+      material: CAKE
+      name: "<yellow>Cake"
+    actions:
+      - "[message] <yellow>You received a Cake."
+
+  golden_carrot:
+    weight: 25
+    display-name: "<gold>Golden Carrot x4"
+    item:
+      material: GOLDEN_CARROT
+      name: "<gold>Golden Carrot"
+      amount: 4
+    actions:
+      - "[message] <gold>You received 4 Golden Carrots!"
+
+  enchanted_golden_apple:
+    weight: 10
+    display-name: "<light_purple>Enchanted Golden Apple"
+    item:
+      material: ENCHANTED_GOLDEN_APPLE
+      name: "<light_purple>Enchanted Golden Apple"
+    actions:
+      - "[message] <light_purple>You received an Enchanted Golden Apple!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

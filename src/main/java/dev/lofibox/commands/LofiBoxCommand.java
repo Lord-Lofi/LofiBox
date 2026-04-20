@@ -3,6 +3,7 @@ package dev.lofibox.commands;
 import dev.lofibox.LofiBox;
 import dev.lofibox.box.MysteryBox;
 import dev.lofibox.gui.PreviewGui;
+import dev.lofibox.gui.StatsGui;
 import dev.lofibox.key.KeyTier;
 import dev.lofibox.stats.StatsManager;
 import org.bukkit.Bukkit;
@@ -200,23 +201,21 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
             if (target == null) { msg(sender, "unknown-player", "player", args[1]); return; }
         } else {
             if (!(sender instanceof Player p)) { sender.sendMessage("§cSpecify a player."); return; }
+            if (!p.hasPermission("lofibox.stats") && !p.hasPermission("lofibox.admin")) {
+                msg(sender, "no-permission"); return;
+            }
             target = p;
         }
 
-        StatsManager stats = plugin.getStatsManager();
-        Map<String, Integer> all = stats.getAll(target.getUniqueId());
-
-        sender.sendMessage(plugin.getMessageConfig().get("stats-header", "player", target.getName()));
-        if (all.isEmpty()) {
-            sender.sendMessage(plugin.getMessageConfig().get("stats-none"));
-        } else {
-            all.forEach((boxId, count) -> {
-                MysteryBox box = plugin.getBoxManager().getBox(boxId);
-                String name = box != null ? box.getDisplayName() : boxId;
-                sender.sendMessage(plugin.getMessageConfig().get("stats-line", "box", name, "count", String.valueOf(count)));
-            });
+        // Console/NPC with a target: open GUI on the target's screen
+        if (!(sender instanceof Player)) {
+            new StatsGui(plugin, target, target, 0).open();
+            return;
         }
-        sender.sendMessage(plugin.getMessageConfig().get("stats-footer"));
+
+        // Player sender always gets the GUI
+        Player viewer = (Player) sender;
+        new StatsGui(plugin, viewer, target, 0).open();
     }
 
     // ── Tab completion ────────────────────────────────────────────────────────

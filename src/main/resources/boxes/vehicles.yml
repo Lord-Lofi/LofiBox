@@ -1,0 +1,49 @@
+name: "<gray>✦ Vehicle Crate ✦</gray>"
+
+item:
+  material: MINECART
+  name: "<gray>✦ Vehicle Crate ✦</gray>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains vehicle-themed heads"
+
+rewards:
+
+  vehicle_head:
+    weight: 40
+    display-name: "<gray>Mystery Vehicle Head"
+    item:
+      head-database-category: "vehicles"
+      material: PLAYER_HEAD
+      name: "<gray>Mystery Vehicle Head"
+    actions:
+      - "[message] <gray>You found a Mystery Vehicle Head!"
+
+  minecart:
+    weight: 30
+    display-name: "<white>Minecart"
+    item:
+      material: MINECART
+      name: "<white>Minecart"
+    actions:
+      - "[message] <white>You received a Minecart."
+
+  saddle:
+    weight: 20
+    display-name: "<gold>Saddle"
+    item:
+      material: SADDLE
+      name: "<gold>Saddle"
+    actions:
+      - "[message] <gold>You received a Saddle!"
+
+  elytra:
+    weight: 10
+    display-name: "<light_purple>★ Elytra"
+    item:
+      material: ELYTRA
+      name: "<light_purple>★ Elytra"
+    actions:
+      - "[message] <light_purple>★ You received an Elytra!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

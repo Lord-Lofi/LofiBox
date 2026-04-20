@@ -7,6 +7,7 @@ import dev.lofibox.util.ActionRunner;
 import dev.lofibox.util.ItemUtil;
 import dev.lofibox.util.MessageUtil;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -43,6 +44,8 @@ public final class SpinGui extends BukkitRunnable implements InventoryHolder {
     private static final int VISIBLE     = 9;
     private static final int CENTER_IDX  = 4;
     private static final int FINAL_OFF   = WINNER_POS - CENTER_IDX; // 43
+
+    private static final Random RANDOM = new Random();
 
     private final LofiBox plugin;
     private final Player player;
@@ -198,6 +201,42 @@ public final class SpinGui extends BukkitRunnable implements InventoryHolder {
             // Win message
             plugin.getMessageConfig().sendRewardWon(player, box.getDisplayName(), winner.getDisplayName());
 
+            // Head found broadcast + double-reward
+            if (winner.isHdbCategoryReward()) {
+                String headName = extractPlainName(rewardItem, winner.getDisplayName());
+
+                if (plugin.getConfigManager().isHeadFoundBroadcast()) {
+                    Component broadcast = plugin.getMessageConfig().get(
+                        "head-found-broadcast", "player", player.getName(), "head", headName);
+                    Bukkit.broadcast(broadcast);
+
+                    if (plugin.getConfigManager().isDiscordHeadAnnounce()) {
+                        plugin.getEssDiscordHook().sendMessage(plugin.getMessageConfig().getRaw(
+                            "head-found-broadcast", "player", player.getName(), "head", headName));
+                    }
+                }
+
+                // Double-reward roll
+                int chance = plugin.getHeadCategoryManager().getEffectiveDoubleChance(winner.getHdbCategory());
+                if (chance > 0 && RANDOM.nextInt(100) < chance) {
+                    ItemStack bonus = plugin.getHeadCategoryManager().getRandomHead(winner.getHdbCategory());
+                    if (bonus != null) {
+                        Map<Integer, ItemStack> extra = player.getInventory().addItem(bonus);
+                        extra.values().forEach(it -> player.getWorld().dropItemNaturally(player.getLocation(), it));
+
+                        String bonusName = extractPlainName(bonus, winner.getDisplayName());
+                        Component doubleMsg = plugin.getMessageConfig().get(
+                            "head-double-reward", "player", player.getName(), "head", bonusName);
+                        Bukkit.broadcast(doubleMsg);
+
+                        if (plugin.getConfigManager().isDiscordHeadAnnounce()) {
+                            plugin.getEssDiscordHook().sendMessage(plugin.getMessageConfig().getRaw(
+                                "head-double-reward", "player", player.getName(), "head", bonusName));
+                        }
+                    }
+                }
+            }
+
             // Firework
             if (plugin.getConfigManager().isWinFirework()) spawnFirework(player.getLocation());
 
@@ -212,6 +251,16 @@ public final class SpinGui extends BukkitRunnable implements InventoryHolder {
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────
+
+    private String extractPlainName(ItemStack item, String fallbackMiniMessage) {
+        if (item != null) {
+            var meta = item.getItemMeta();
+            if (meta != null && meta.displayName() != null) {
+                return PlainTextComponentSerializer.plainText().serialize(meta.displayName());
+            }
+        }
+        return PlainTextComponentSerializer.plainText().serialize(MessageUtil.parse(fallbackMiniMessage));
+    }
 
     private void playSound(String soundName) {
         try {

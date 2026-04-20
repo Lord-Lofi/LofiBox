@@ -1,0 +1,50 @@
+name: "<dark_gray>✦ Miscellaneous Crate ✦</dark_gray>"
+
+item:
+  material: CYAN_SHULKER_BOX
+  name: "<dark_gray>✦ Miscellaneous Crate ✦</dark_gray>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains miscellaneous heads"
+
+rewards:
+
+  misc_head:
+    weight: 40
+    display-name: "<gray>Mystery Miscellaneous Head"
+    item:
+      head-database-category: "miscellaneous"
+      material: PLAYER_HEAD
+      name: "<gray>Mystery Miscellaneous Head"
+    actions:
+      - "[message] <gray>You found a Mystery Miscellaneous Head!"
+
+  ender_pearl:
+    weight: 30
+    display-name: "<dark_aqua>Ender Pearl x4"
+    item:
+      material: ENDER_PEARL
+      name: "<dark_aqua>Ender Pearl"
+      amount: 4
+    actions:
+      - "[message] <dark_aqua>You received 4 Ender Pearls."
+
+  shulker_box:
+    weight: 20
+    display-name: "<light_purple>Shulker Box"
+    item:
+      material: SHULKER_BOX
+      name: "<light_purple>Shulker Box"
+    actions:
+      - "[message] <light_purple>You received a Shulker Box!"
+
+  nether_star:
+    weight: 10
+    display-name: "<yellow>Nether Star"
+    item:
+      material: NETHER_STAR
+      name: "<yellow>Nether Star"
+    actions:
+      - "[message] <yellow>You received a Nether Star!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"

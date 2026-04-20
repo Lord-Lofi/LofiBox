@@ -1,0 +1,51 @@
+# Seasonal: head pool active March 20 through April 20.
+# The Easter head reward falls back to an Egg outside that window.
+name: "<gradient:#facc15:#86efac>✦ Easter Crate ✦</gradient>"
+
+item:
+  material: EGG
+  name: "<gradient:#facc15:#86efac>✦ Easter Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Seasonal: March 20 — April 20"
+
+rewards:
+
+  easter_head:
+    weight: 40
+    display-name: "<gradient:#facc15:#86efac>Mystery Easter Head"
+    item:
+      head-database-category: "easter"
+      material: EGG
+      name: "<gradient:#facc15:#86efac>Mystery Easter Head"
+    actions:
+      - "[message] <gradient:#facc15:#86efac>You found a Mystery Easter Head!"
+
+  egg:
+    weight: 30
+    display-name: "<white>Egg x16"
+    item:
+      material: EGG
+      name: "<white>Egg"
+      amount: 16
+    actions:
+      - "[message] <white>You received 16 Eggs."
+
+  cake:
+    weight: 20
+    display-name: "<yellow>Cake"
+    item:
+      material: CAKE
+      name: "<yellow>Cake"
+    actions:
+      - "[message] <yellow>You received a Cake!"
+
+  rabbits_foot:
+    weight: 10
+    display-name: "<light_purple>Rabbit's Foot"
+    item:
+      material: RABBIT_FOOT
+      name: "<light_purple>Rabbit's Foot"
+    actions:
+      - "[message] <light_purple>Lucky! You received a Rabbit's Foot!"

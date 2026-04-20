@@ -6,6 +6,9 @@ import dev.lofibox.config.ConfigManager;
 import dev.lofibox.config.MessageConfig;
 import dev.lofibox.editor.ChatInputManager;
 import dev.lofibox.editor.EditorManager;
+import dev.lofibox.api.LofiBoxAPI;
+import dev.lofibox.api.LofiBoxAPIImpl;
+import dev.lofibox.integration.EssDiscordHook;
 import dev.lofibox.integration.HeadCategoryManager;
 import dev.lofibox.integration.HeadDatabaseHook;
 import dev.lofibox.integration.VaultHook;
@@ -18,6 +21,7 @@ import dev.lofibox.util.ActionRunner;
 import dev.lofibox.util.PlaceholderHook;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class LofiBox extends JavaPlugin {
@@ -33,6 +37,7 @@ public final class LofiBox extends JavaPlugin {
     private HeadCategoryManager  headCategoryManager;
     private KeyManager           keyManager;
     private VaultHook            vaultHook;
+    private EssDiscordHook       essDiscordHook;
     private EditorManager        editorManager;
     private ChatInputManager     chatInputManager;
 
@@ -58,6 +63,16 @@ public final class LofiBox extends JavaPlugin {
             }
         }
 
+        essDiscordHook = new EssDiscordHook();
+        if (pm.isPluginEnabled("EssentialsDiscord")) {
+            String channel = configManager.getDiscordChannel();
+            if (essDiscordHook.setup(this, channel)) {
+                getLogger().info("EssentialsXDiscord hook registered (channel: " + channel + ").");
+            } else {
+                getLogger().warning("EssentialsXDiscord found but hook failed — check discord-channel in config.yml.");
+            }
+        }
+
         headDatabaseHook    = new HeadDatabaseHook();
         headCategoryManager = new HeadCategoryManager(this);
         headDatabaseHook.setCategoryManager(headCategoryManager);
@@ -69,6 +84,13 @@ public final class LofiBox extends JavaPlugin {
 
         boxManager = new BoxManager(this);
         boxManager.loadAll();
+
+        getServer().getServicesManager().register(
+                LofiBoxAPI.class,
+                new LofiBoxAPIImpl(boxManager, headCategoryManager),
+                this,
+                ServicePriority.Normal
+        );
 
         PluginCommand cmd = getCommand("lofibox");
         if (cmd != null) {
@@ -119,6 +141,7 @@ public final class LofiBox extends JavaPlugin {
     public HeadCategoryManager getHeadCategoryManager() { return headCategoryManager; }
     public KeyManager getKeyManager()                   { return keyManager; }
     public VaultHook getVaultHook()                     { return vaultHook; }
+    public EssDiscordHook getEssDiscordHook()           { return essDiscordHook; }
     public EditorManager getEditorManager()             { return editorManager; }
     public ChatInputManager getChatInputManager()       { return chatInputManager; }
 }

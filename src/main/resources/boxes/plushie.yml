@@ -1,0 +1,53 @@
+name: "<gradient:#f9a8d4:#c084fc>✦ Plushie Crate ✦</gradient>"
+
+item:
+  material: PINK_WOOL
+  name: "<gradient:#f9a8d4:#c084fc>✦ Plushie Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains plushie heads"
+
+sounds:
+  win: "block.amethyst_block.chime"
+
+rewards:
+
+  plushie_head:
+    weight: 40
+    display-name: "<gradient:#f9a8d4:#c084fc>Mystery Plushie Head"
+    item:
+      head-database-category: "plushie"
+      material: PLAYER_HEAD
+      name: "<gradient:#f9a8d4:#c084fc>Mystery Plushie Head"
+    actions:
+      - "[message] <gradient:#f9a8d4:#c084fc>You found a Mystery Plushie Head!"
+
+  pink_wool:
+    weight: 30
+    display-name: "<light_purple>Pink Wool x4"
+    item:
+      material: PINK_WOOL
+      name: "<light_purple>Pink Wool"
+      amount: 4
+    actions:
+      - "[message] <light_purple>You received 4 Pink Wool."
+
+  slime_ball:
+    weight: 20
+    display-name: "<green>Slime Ball x8"
+    item:
+      material: SLIME_BALL
+      name: "<green>Slime Ball"
+      amount: 8
+    actions:
+      - "[message] <green>You received 8 Slime Balls!"
+
+  rabbits_foot:
+    weight: 10
+    display-name: "<light_purple>Rabbit's Foot"
+    item:
+      material: RABBIT_FOOT
+      name: "<light_purple>Rabbit's Foot"
+    actions:
+      - "[message] <light_purple>Lucky! You received a Rabbit's Foot!"

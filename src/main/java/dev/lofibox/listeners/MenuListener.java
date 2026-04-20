@@ -1,8 +1,10 @@
 package dev.lofibox.listeners;
 
 import dev.lofibox.LofiBox;
+import dev.lofibox.box.MysteryBox;
 import dev.lofibox.gui.PreviewGui;
 import dev.lofibox.gui.SpinGui;
+import dev.lofibox.gui.StatsGui;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,12 +45,35 @@ public final class MenuListener implements Listener {
                 player.openInventory(preview.nextPage().getInventory());
             }
         }
+
+        if (e.getInventory().getHolder() instanceof StatsGui stats) {
+            e.setCancelled(true);
+            if (e.getClickedInventory() == null || !e.getClickedInventory().equals(stats.getInventory())) return;
+
+            int slot = e.getSlot();
+
+            if (slot == StatsGui.SLOT_CLOSE) {
+                player.closeInventory();
+            } else if (slot == StatsGui.SLOT_PREV && stats.getPage() > 0) {
+                new StatsGui(plugin, player, stats.getSubject(), stats.getPage() - 1).open();
+            } else if (slot == StatsGui.SLOT_NEXT && stats.getPage() < stats.getTotalPages() - 1) {
+                new StatsGui(plugin, player, stats.getSubject(), stats.getPage() + 1).open();
+            } else {
+                // Entry click — open preview for that box
+                String boxId = stats.getBoxIdAt(slot);
+                if (boxId == null) return;
+                MysteryBox box = plugin.getBoxManager().getBox(boxId);
+                if (box == null) return;
+                new PreviewGui(plugin, box).open(player);
+            }
+        }
     }
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onInventoryDrag(InventoryDragEvent e) {
         if (e.getInventory().getHolder() instanceof SpinGui
-                || e.getInventory().getHolder() instanceof PreviewGui) {
+                || e.getInventory().getHolder() instanceof PreviewGui
+                || e.getInventory().getHolder() instanceof StatsGui) {
             e.setCancelled(true);
         }
     }

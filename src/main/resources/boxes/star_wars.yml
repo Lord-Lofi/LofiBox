@@ -1,0 +1,55 @@
+# Bonus: 50% chance of a second head on May 4th (Star Wars Day).
+name: "<gradient:#1d4ed8:#facc15>✦ Star Wars Crate ✦</gradient>"
+
+item:
+  material: BLAZE_ROD
+  name: "<gradient:#1d4ed8:#facc15>✦ Star Wars Crate ✦</gradient>"
+  lore:
+    - ""
+    - "<gray>Right-click to open!"
+    - "<dark_gray>Contains Star Wars heads"
+    - "<dark_gray>May 4th: 50% double head chance!"
+
+sounds:
+  win: "ui.toast.challenge_complete"
+
+rewards:
+
+  star_wars_head:
+    weight: 40
+    display-name: "<gradient:#1d4ed8:#facc15>Mystery Star Wars Head"
+    item:
+      head-database-category: "star_wars"
+      material: PLAYER_HEAD
+      name: "<gradient:#1d4ed8:#facc15>Mystery Star Wars Head"
+    actions:
+      - "[message] <gradient:#1d4ed8:#facc15>You found a Mystery Star Wars Head!"
+
+  blaze_rod:
+    weight: 30
+    display-name: "<yellow>Blaze Rod x4"
+    item:
+      material: BLAZE_ROD
+      name: "<yellow>Blaze Rod"
+      amount: 4
+    actions:
+      - "[message] <yellow>You received 4 Blaze Rods."
+
+  end_crystal:
+    weight: 20
+    display-name: "<light_purple>End Crystal"
+    item:
+      material: END_CRYSTAL
+      name: "<light_purple>End Crystal"
+    actions:
+      - "[message] <light_purple>You received an End Crystal!"
+
+  nether_star:
+    weight: 10
+    display-name: "<gold>★ Nether Star"
+    item:
+      material: NETHER_STAR
+      name: "<gold>★ Nether Star"
+    actions:
+      - "[message] <gold>May the Force be with you — you received a Nether Star!"
+      - "[sound] UI_TOAST_CHALLENGE_COMPLETE"
