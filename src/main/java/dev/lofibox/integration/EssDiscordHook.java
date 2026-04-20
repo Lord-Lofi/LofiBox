@@ -30,8 +30,19 @@ public final class EssDiscordHook {
         if (discord == null) return false;
 
         try {
-            // Resolve the channel object — return type varies by EssX version
-            Method getChannel = discord.getClass().getMethod("getDefinedChannel", String.class);
+            // Resolve the channel object via the interface, not the concrete class
+            Method getChannel = null;
+            for (Method m : DiscordService.class.getMethods()) {
+                if (m.getName().equals("getDefinedChannel") && m.getParameterCount() == 1
+                        && m.getParameterTypes()[0] == String.class) {
+                    getChannel = m;
+                    break;
+                }
+            }
+            if (getChannel == null) {
+                plugin.getLogger().warning("EssDiscord: getDefinedChannel not found on DiscordService. Discord announcements disabled.");
+                return false;
+            }
             channel = getChannel.invoke(discord, channelDefinition);
             if (channel == null) {
                 plugin.getLogger().warning("EssDiscord: channel '" + channelDefinition + "' returned null. Check your EssentialsXDiscord config.");

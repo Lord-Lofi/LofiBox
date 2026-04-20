@@ -82,4 +82,22 @@ public final class HeadDatabaseHook implements Listener {
             return null;
         }
     }
+
+    /**
+     * Returns all head IDs belonging to a native HDB CategoryEnum.
+     * Returns an empty list if the name is not a valid enum value or HDB isn't ready.
+     */
+    public List<String> getHeadIdsByEnum(String categoryName) {
+        if (!ready) return Collections.emptyList();
+        try {
+            CategoryEnum cat = CategoryEnum.valueOf(categoryName.toUpperCase());
+            List<Head> heads = api.getHeads(cat);
+            if (heads == null || heads.isEmpty()) return Collections.emptyList();
+            List<String> ids = new ArrayList<>(heads.size());
+            for (Head h : heads) ids.add(h.id);
+            return ids;
+        } catch (IllegalArgumentException ignored) {
+            return Collections.emptyList();
+        }
+    }
 }
