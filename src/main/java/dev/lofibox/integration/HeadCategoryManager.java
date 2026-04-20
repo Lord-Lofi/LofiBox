@@ -72,14 +72,23 @@ public final class HeadCategoryManager {
                 ids = new ArrayList<>(allHeads.size());
                 for (Head h : allHeads) ids.add(h.id);
             } else {
-                List<String> terms = resolveTerms(cs);
-                if (terms.isEmpty()) continue;
                 Set<String> found = new LinkedHashSet<>();
+
+                // Pull from native HDB category if specified
+                String hdbCat = cs.getString("hdb-category");
+                if (hdbCat != null && !hdbCat.isBlank()) {
+                    found.addAll(plugin.getHeadDatabaseHook().getHeadIdsByEnum(hdbCat.trim()));
+                }
+
+                // Also search by keyword terms (union with above)
+                List<String> terms = resolveTerms(cs);
                 for (Head h : allHeads) {
                     for (String t : terms) {
                         if (matches(h, t)) { found.add(h.id); break; }
                     }
                 }
+
+                if (found.isEmpty() && hdbCat == null) continue;
                 ids = new ArrayList<>(found);
             }
 

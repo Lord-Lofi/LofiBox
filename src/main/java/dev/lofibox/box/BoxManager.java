@@ -39,7 +39,8 @@ public final class BoxManager {
         "miscellaneous.yml","monsters.yml",    "mythology.yml",     "ocean.yml",
         "plants.yml",       "plushie.yml",     "pokemon.yml",       "random.yml",
         "space.yml",        "st_patricks.yml", "star_wars.yml",     "thanksgiving.yml",
-        "valentine.yml",    "vehicles.yml",    "villager.yml",      "winter.yml"
+        "valentine.yml",    "vehicles.yml",    "villager.yml",      "winter.yml",
+        "repair.yml"
     );
 
     public void loadAll() {
