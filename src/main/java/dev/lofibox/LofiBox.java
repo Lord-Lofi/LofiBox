@@ -49,6 +49,8 @@ public final class LofiBox extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
+        saveConfig();
 
         configManager         = new ConfigManager(this);
         messageConfig         = new MessageConfig(this);
