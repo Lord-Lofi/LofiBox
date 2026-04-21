@@ -1,6 +1,13 @@
 package dev.lofibox.config;
 
 import dev.lofibox.LofiBox;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public final class ConfigManager {
 
@@ -17,10 +24,21 @@ public final class ConfigManager {
 
     public ConfigManager(LofiBox plugin) {
         this.plugin = plugin;
-        load();
+        reload();
     }
 
     public void reload() {
+        File file = new File(plugin.getDataFolder(), "config.yml");
+        if (!file.exists()) plugin.saveDefaultConfig();
+        plugin.reloadConfig();
+        YamlConfiguration defaults = YamlConfiguration.loadConfiguration(
+            new InputStreamReader(Objects.requireNonNull(
+                plugin.getResource("config.yml")), StandardCharsets.UTF_8));
+        plugin.getConfig().setDefaults(defaults);
+        plugin.getConfig().options().copyDefaults(true);
+        try { plugin.getConfig().save(file); } catch (IOException e) {
+            plugin.getLogger().warning("Could not save config.yml after migration: " + e.getMessage());
+        }
         load();
     }
 
