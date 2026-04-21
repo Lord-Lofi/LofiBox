@@ -3,6 +3,7 @@ package dev.lofibox.commands;
 import dev.lofibox.LofiBox;
 import dev.lofibox.box.MysteryBox;
 import dev.lofibox.gui.PreviewGui;
+import dev.lofibox.gui.RedeemGui;
 import dev.lofibox.gui.StatsGui;
 import dev.lofibox.key.KeyTier;
 import dev.lofibox.stats.StatsManager;
@@ -42,6 +43,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
             case "preview" -> handlePreview(sender, args);
             case "stats"   -> handleStats(sender, args);
             case "editor"  -> handleEditor(sender);
+            case "redeem"  -> handleRedeem(sender);
             default        -> sendHelp(sender);
         }
         return true;
@@ -224,7 +226,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
         if (args.length == 1) {
-            completions.addAll(List.of("give", "givekey", "open", "preview", "list", "stats", "reload", "editor"));
+            completions.addAll(List.of("give", "givekey", "open", "preview", "list", "stats", "reload", "editor", "redeem"));
         } else if (args.length == 2) {
             String sub = args[0].toLowerCase();
             if (sub.equals("give") || sub.equals("open") || sub.equals("preview")) {
@@ -249,6 +251,17 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
+    private void handleRedeem(CommandSender sender) {
+        if (!(sender instanceof Player player)) { sender.sendMessage("§cPlayers only."); return; }
+        if (!player.hasPermission("lofibox.redeem") && !player.hasPermission("lofibox.admin")) {
+            msg(sender, "no-permission"); return;
+        }
+        if (!plugin.getPendingRewardsManager().hasPending(player.getUniqueId())) {
+            msg(sender, "redeem-none"); return;
+        }
+        new RedeemGui(plugin, player, 0).open();
+    }
+
     private void handleEditor(CommandSender sender) {
         if (!(sender instanceof Player player)) { sender.sendMessage("§cPlayers only."); return; }
         if (!player.hasPermission("lofibox.editor")) { msg(sender, "no-permission"); return; }
@@ -269,6 +282,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage("§7/lofibox stats §f[player]");
         sender.sendMessage("§7/lofibox reload");
         sender.sendMessage("§7/lofibox editor");
+        sender.sendMessage("§7/lofibox redeem");
     }
 
     private int parseInt(String s, int fallback) {

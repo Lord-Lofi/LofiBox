@@ -18,12 +18,13 @@ default-win-sound: "entity.player.levelup"
 # Firework burst on win.
 win-firework: true
 
-# Broadcast a server-wide message when a player wins a HeadDatabase head reward.
-# e.g. "LordLofi found a Luke Head!"
+# Broadcast a server-wide message (to all other players) when a player wins a HeadDatabase head reward.
+# The opening player is excluded — they already see the congratulations message.
 head-found-broadcast: true
 
-# Also post the head-found broadcast to EssentialsXDiscord.
+# Post the head-found message to EssentialsXDiscord.
 # Requires EssentialsXDiscord to be installed and configured.
+# Independent of head-found-broadcast — both can be enabled at the same time.
 discord-head-announce: false
 
 # The EssentialsXDiscord channel definition name to post to (from EssX Discord's config).
