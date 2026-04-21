@@ -10,13 +10,14 @@ softdepend:
   - HeadDatabase
   - LuckPerms
   - Vault
+  - Essentials
   - EssentialsDiscord
 
 commands:
   lofibox:
     description: Main LofiBox command.
     aliases: [ mb, crate, lbox ]
-    usage: /lofibox <open|give|preview|list|stats|reload>
+    usage: /lofibox <open|give|preview|list|stats|redeem|reload>
 
 permissions:
   lofibox.admin:
@@ -43,3 +44,6 @@ permissions:
   lofibox.editor:
     description: Open the in-game box editor GUI.
     default: op
+  lofibox.redeem:
+    description: Open the pending rewards redemption GUI.
+    default: true

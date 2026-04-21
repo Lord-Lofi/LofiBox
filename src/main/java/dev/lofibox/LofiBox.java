@@ -9,10 +9,12 @@ import dev.lofibox.editor.EditorManager;
 import dev.lofibox.api.LofiBoxAPI;
 import dev.lofibox.api.LofiBoxAPIImpl;
 import dev.lofibox.integration.EssDiscordHook;
+import dev.lofibox.integration.EssMailHook;
 import dev.lofibox.integration.HeadCategoryManager;
 import dev.lofibox.integration.HeadDatabaseHook;
 import dev.lofibox.integration.VaultHook;
 import dev.lofibox.key.KeyManager;
+import dev.lofibox.redeem.PendingRewardsManager;
 import dev.lofibox.listeners.BoxItemListener;
 import dev.lofibox.listeners.EditorListener;
 import dev.lofibox.listeners.MenuListener;
@@ -37,20 +39,23 @@ public final class LofiBox extends JavaPlugin {
     private HeadCategoryManager  headCategoryManager;
     private KeyManager           keyManager;
     private VaultHook            vaultHook;
-    private EssDiscordHook       essDiscordHook;
-    private EditorManager        editorManager;
-    private ChatInputManager     chatInputManager;
+    private EssDiscordHook         essDiscordHook;
+    private EssMailHook            essMailHook;
+    private PendingRewardsManager  pendingRewardsManager;
+    private EditorManager          editorManager;
+    private ChatInputManager       chatInputManager;
 
     @Override
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
 
-        configManager    = new ConfigManager(this);
-        messageConfig    = new MessageConfig(this);
-        statsManager     = new StatsManager(this);
-        actionRunner     = new ActionRunner(this);
-        keyManager       = new KeyManager(this);
+        configManager         = new ConfigManager(this);
+        messageConfig         = new MessageConfig(this);
+        statsManager          = new StatsManager(this);
+        actionRunner          = new ActionRunner(this);
+        keyManager            = new KeyManager(this);
+        pendingRewardsManager = new PendingRewardsManager(this);
 
         PluginManager pm = getServer().getPluginManager();
 
@@ -60,6 +65,13 @@ public final class LofiBox extends JavaPlugin {
                 getLogger().info("Vault economy hook registered.");
             } else {
                 getLogger().warning("Vault found but no economy provider — cost features disabled.");
+            }
+        }
+
+        essMailHook = new EssMailHook();
+        if (pm.isPluginEnabled("Essentials")) {
+            if (essMailHook.setup(this)) {
+                getLogger().info("EssentialsMail hook registered.");
             }
         }
 
@@ -141,7 +153,9 @@ public final class LofiBox extends JavaPlugin {
     public HeadCategoryManager getHeadCategoryManager() { return headCategoryManager; }
     public KeyManager getKeyManager()                   { return keyManager; }
     public VaultHook getVaultHook()                     { return vaultHook; }
-    public EssDiscordHook getEssDiscordHook()           { return essDiscordHook; }
-    public EditorManager getEditorManager()             { return editorManager; }
-    public ChatInputManager getChatInputManager()       { return chatInputManager; }
+    public EssDiscordHook getEssDiscordHook()               { return essDiscordHook; }
+    public EssMailHook getEssMailHook()                     { return essMailHook; }
+    public PendingRewardsManager getPendingRewardsManager() { return pendingRewardsManager; }
+    public EditorManager getEditorManager()                 { return editorManager; }
+    public ChatInputManager getChatInputManager()           { return chatInputManager; }
 }
