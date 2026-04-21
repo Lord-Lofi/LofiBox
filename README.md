@@ -21,12 +21,14 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 - **HeadDatabase support** — specific heads by ID, random heads by HDB category, or 26 custom search-term pools (e.g. `halloween`, `anime`, `pokemon`) built from HDB's name/tag data
 - **Seasonal availability windows** — head categories go live and expire on configurable dates; year-wrap (Dec–Jan) supported
 - **Double-reward mechanic** — per-category bonus head chance, optionally scoped to a date range (e.g. 50% on Pokémon Day)
-- **Server broadcast & Discord announce** — broadcasts head finds to chat and posts to EssentialsXDiscord
+- **Pending rewards system** — full-inventory rewards saved to disk; player redeems via `/lofibox redeem` GUI; EssX mail notification sent automatically
+- **Server broadcast & Discord announce** — independent toggles: broadcast head finds to chat and/or post to EssentialsXDiscord
 - **Player stats GUI** — paginated inventory showing each player's per-box open counts; entry-click opens the reward preview
 - **NPC integration** — console-triggered stats command opens the GUI directly on a player's screen (Citizens, etc.)
 - **Public developer API** — `LofiBoxAPI` service for reading box metadata and seasonal state from other plugins
 - **Custom item support** — base64 snapshot preserves full PDC data (MMOItems, Oraxen, etc.)
 - **PlaceholderAPI** — expose opened-count stats to scoreboards and other plugins
+- **Automatic config migration** — new keys merged into existing files on every upgrade; no manual editing required
 - **MiniMessage formatting** — gradients, colors, and hover text everywhere
 - **Hot reload** — `/lofibox reload` with no server restart
 
@@ -41,6 +43,7 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 | HeadDatabase | ❌ Optional |
 | LuckPerms | ❌ Optional (uses standard Bukkit permissions) |
 | Vault + economy plugin | ❌ Optional (required for open-cost) |
+| EssentialsX | ❌ Optional (EssX mail notifications for pending rewards) |
 | EssentialsXDiscord | ❌ Optional (required for Discord announce) |
 
 ---
@@ -65,6 +68,7 @@ Players right-click a physical crate item to trigger a CSGO-style spin animation
 | `/lofibox preview <box>` | `lofibox.use` | Preview all rewards and chances |
 | `/lofibox list` | `lofibox.use` | List all loaded boxes |
 | `/lofibox stats [player]` | `lofibox.stats` | Open the stats GUI for yourself or another player |
+| `/lofibox redeem` | `lofibox.redeem` | Open the pending rewards GUI to claim full-inventory items |
 | `/lofibox reload` | `lofibox.reload` | Reload all configs and boxes |
 | `/lofibox editor` | `lofibox.editor` | Open the in-game box editor GUI |
 
@@ -82,6 +86,7 @@ Aliases: `/mb`, `/crate`, `/lbox`
 | `lofibox.reload` | op | Reload configs |
 | `lofibox.stats` | false | View own stats GUI |
 | `lofibox.stats.others` | op | View another player's stats; console opens GUI on target's screen |
+| `lofibox.redeem` | true | Open the pending rewards GUI |
 | `lofibox.bypass` | op | Bypass permission-gated rewards |
 | `lofibox.editor` | op | Open the in-game box editor GUI |
 

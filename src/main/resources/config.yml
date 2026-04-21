@@ -1,8 +1,8 @@
-# LofiMystery Configuration
+# LofiBox Configuration
 
 # What to do when a player's inventory is full when receiving a reward.
-# DROP  - drop the item at the player's feet
-# MAIL  - future: hold for next login (not yet implemented)
+# DROP    - drop the item at the player's feet
+# PENDING - save to pending rewards; player redeems via /lofibox redeem (EssX mail notification sent if available)
 full-inventory-action: DROP
 
 # Whether to show actual weight numbers in the preview GUI.
