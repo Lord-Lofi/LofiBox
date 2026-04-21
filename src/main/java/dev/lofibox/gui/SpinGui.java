@@ -3,6 +3,7 @@ package dev.lofibox.gui;
 import dev.lofibox.LofiBox;
 import dev.lofibox.box.BoxReward;
 import dev.lofibox.box.MysteryBox;
+import dev.lofibox.redeem.PendingRewardsManager;
 import dev.lofibox.util.ActionRunner;
 import dev.lofibox.util.ItemUtil;
 import dev.lofibox.util.MessageUtil;
@@ -180,12 +181,17 @@ public final class SpinGui extends BukkitRunnable implements InventoryHolder {
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             if (!player.isOnline()) return;
 
-            // Give item
+            // Give item — save to pending if inventory is full
             ItemStack rewardItem = winner.getDisplayItem();
             Map<Integer, ItemStack> leftover = player.getInventory().addItem(rewardItem);
             if (!leftover.isEmpty()) {
-                leftover.values().forEach(it -> player.getWorld().dropItemNaturally(player.getLocation(), it));
+                PendingRewardsManager pending = plugin.getPendingRewardsManager();
+                leftover.values().forEach(it -> pending.addPending(player.getUniqueId(), it));
                 plugin.getMessageConfig().send(player, "inventory-full");
+                // EssX mail notification if available
+                plugin.getEssMailHook().sendMail(player.getName(),
+                    plugin.getMessageConfig().getRaw("inventory-full-mail",
+                        "reward", winner.getDisplayName(), "box", box.getDisplayName()));
             }
 
             // Run actions
@@ -205,15 +211,16 @@ public final class SpinGui extends BukkitRunnable implements InventoryHolder {
             if (winner.isHdbCategoryReward()) {
                 String headName = extractPlainName(rewardItem, winner.getDisplayName());
 
+                Component headMsg = plugin.getMessageConfig().get(
+                    "head-found-broadcast", "player", player.getName(), "head", headName);
                 if (plugin.getConfigManager().isHeadFoundBroadcast()) {
-                    Component broadcast = plugin.getMessageConfig().get(
-                        "head-found-broadcast", "player", player.getName(), "head", headName);
-                    Bukkit.broadcast(broadcast);
-
-                    if (plugin.getConfigManager().isDiscordHeadAnnounce()) {
-                        plugin.getEssDiscordHook().sendMessage(plugin.getMessageConfig().getRaw(
-                            "head-found-broadcast", "player", player.getName(), "head", headName));
-                    }
+                    Bukkit.getOnlinePlayers().stream()
+                        .filter(p -> !p.equals(player))
+                        .forEach(p -> p.sendMessage(headMsg));
+                }
+                if (plugin.getConfigManager().isDiscordHeadAnnounce()) {
+                    plugin.getEssDiscordHook().sendMessage(plugin.getMessageConfig().getRaw(
+                        "head-found-broadcast", "player", player.getName(), "head", headName));
                 }
 
                 // Double-reward roll
@@ -227,8 +234,11 @@ public final class SpinGui extends BukkitRunnable implements InventoryHolder {
                         String bonusName = extractPlainName(bonus, winner.getDisplayName());
                         Component doubleMsg = plugin.getMessageConfig().get(
                             "head-double-reward", "player", player.getName(), "head", bonusName);
-                        Bukkit.broadcast(doubleMsg);
-
+                        if (plugin.getConfigManager().isHeadFoundBroadcast()) {
+                            Bukkit.getOnlinePlayers().stream()
+                                .filter(p -> !p.equals(player))
+                                .forEach(p -> p.sendMessage(doubleMsg));
+                        }
                         if (plugin.getConfigManager().isDiscordHeadAnnounce()) {
                             plugin.getEssDiscordHook().sendMessage(plugin.getMessageConfig().getRaw(
                                 "head-double-reward", "player", player.getName(), "head", bonusName));

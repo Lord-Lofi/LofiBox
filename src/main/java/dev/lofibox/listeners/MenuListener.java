@@ -3,10 +3,14 @@ package dev.lofibox.listeners;
 import dev.lofibox.LofiBox;
 import dev.lofibox.box.MysteryBox;
 import dev.lofibox.gui.PreviewGui;
+import dev.lofibox.gui.RedeemGui;
 import dev.lofibox.gui.SpinGui;
 import dev.lofibox.gui.StatsGui;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.Map;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -46,6 +50,37 @@ public final class MenuListener implements Listener {
             }
         }
 
+        if (e.getInventory().getHolder() instanceof RedeemGui redeem) {
+            e.setCancelled(true);
+            if (e.getClickedInventory() == null || !e.getClickedInventory().equals(redeem.getInventory())) return;
+
+            int slot = e.getSlot();
+            if (slot == RedeemGui.SLOT_CLOSE) {
+                player.closeInventory();
+            } else if (slot == RedeemGui.SLOT_PREV && redeem.getPage() > 0) {
+                new RedeemGui(plugin, player, redeem.getPage() - 1).open();
+            } else if (slot == RedeemGui.SLOT_NEXT && redeem.getPage() < redeem.getTotalPages() - 1) {
+                new RedeemGui(plugin, player, redeem.getPage() + 1).open();
+            } else {
+                int idx = redeem.getPendingIndexAt(slot);
+                if (idx < 0) return;
+                // Try to give the item
+                ItemStack item = plugin.getPendingRewardsManager().getPending(player.getUniqueId()).get(idx);
+                Map<Integer, ItemStack> leftover = player.getInventory().addItem(item.clone());
+                if (!leftover.isEmpty()) {
+                    plugin.getMessageConfig().send(player, "redeem-inventory-full");
+                } else {
+                    plugin.getPendingRewardsManager().remove(player.getUniqueId(), idx);
+                    plugin.getMessageConfig().send(player, "redeem-claimed", "reward", item.getItemMeta() != null
+                        && item.getItemMeta().hasDisplayName()
+                        ? net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText()
+                            .serialize(item.getItemMeta().displayName()) : item.getType().name());
+                    // Reopen to refresh
+                    new RedeemGui(plugin, player, redeem.getPage()).open();
+                }
+            }
+        }
+
         if (e.getInventory().getHolder() instanceof StatsGui stats) {
             e.setCancelled(true);
             if (e.getClickedInventory() == null || !e.getClickedInventory().equals(stats.getInventory())) return;
@@ -73,7 +108,8 @@ public final class MenuListener implements Listener {
     public void onInventoryDrag(InventoryDragEvent e) {
         if (e.getInventory().getHolder() instanceof SpinGui
                 || e.getInventory().getHolder() instanceof PreviewGui
-                || e.getInventory().getHolder() instanceof StatsGui) {
+                || e.getInventory().getHolder() instanceof StatsGui
+                || e.getInventory().getHolder() instanceof RedeemGui) {
             e.setCancelled(true);
         }
     }

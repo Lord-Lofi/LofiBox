@@ -27,11 +27,17 @@ reward-won: "<newline><gradient:#6366f1:#a78bfa>  ✦ Congratulations! ✦</grad
 
 # Server-wide broadcast when a player wins a HeadDatabase head reward.
 # {player} = player name, {head} = plain-text head name
-head-found-broadcast: "<gradient:#6366f1:#a78bfa>{player}</gradient> <gray>found a <white>{head}<gray>!"
-head-double-reward: "<gradient:#f59e0b:#fbbf24>✦ BONUS!</gradient> <gradient:#6366f1:#a78bfa>{player}</gradient> <gray>also received a bonus <white>{head}<gray>!"
+head-found-broadcast: "<gradient:#6366f1:#a78bfa>{player}</gradient> <gray>found a <white>{head} Head<gray>!"
+head-double-reward: "<gradient:#f59e0b:#fbbf24>✦ BONUS!</gradient> <gradient:#6366f1:#a78bfa>{player}</gradient> <gray>also received a bonus <white>{head} Head<gray>!"
 
-# Inventory full
-inventory-full: "<prefix><yellow>Your inventory was full — your reward dropped at your feet."
+# Inventory full — reward saved to pending
+inventory-full: "<prefix><yellow>Your inventory was full — your reward has been saved! Use <white>/lofibox redeem<yellow> to claim it."
+inventory-full-mail: "Your inventory was full when you won {reward} from {box}. Use /lofibox redeem to claim it when you have space."
+
+# Redeem GUI
+redeem-none: "<prefix><gray>You have no pending rewards."
+redeem-claimed: "<prefix><green>Claimed <white>{reward}<green>!"
+redeem-inventory-full: "<prefix><red>Your inventory is still full — make some space first."
 
 # Give command
 give-success: "<prefix><green>Gave <white>{amount}x {box}<green> to <white>{player}<green>."
