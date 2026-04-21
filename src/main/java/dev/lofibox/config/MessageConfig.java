@@ -10,6 +10,9 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public final class MessageConfig {
 
@@ -25,6 +28,15 @@ public final class MessageConfig {
         File file = new File(plugin.getDataFolder(), "messages.yml");
         if (!file.exists()) plugin.saveResource("messages.yml", false);
         cfg = YamlConfiguration.loadConfiguration(file);
+        // Merge any missing keys from the default messages.yml
+        YamlConfiguration defaults = YamlConfiguration.loadConfiguration(
+            new InputStreamReader(Objects.requireNonNull(
+                plugin.getResource("messages.yml")), StandardCharsets.UTF_8));
+        cfg.setDefaults(defaults);
+        cfg.options().copyDefaults(true);
+        try { cfg.save(file); } catch (IOException e) {
+            plugin.getLogger().warning("Could not save messages.yml after migration: " + e.getMessage());
+        }
     }
 
     public Component get(String key, String... replacements) {

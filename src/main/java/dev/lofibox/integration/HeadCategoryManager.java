@@ -8,6 +8,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -46,6 +49,15 @@ public final class HeadCategoryManager {
         File file = new File(plugin.getDataFolder(), "head-categories.yml");
         if (!file.exists()) plugin.saveResource("head-categories.yml", false);
         config = YamlConfiguration.loadConfiguration(file);
+        // Merge any missing categories/keys from the default head-categories.yml
+        YamlConfiguration defaults = YamlConfiguration.loadConfiguration(
+            new InputStreamReader(java.util.Objects.requireNonNull(
+                plugin.getResource("head-categories.yml")), StandardCharsets.UTF_8));
+        config.setDefaults(defaults);
+        config.options().copyDefaults(true);
+        try { config.save(file); } catch (IOException e) {
+            plugin.getLogger().warning("Could not save head-categories.yml after migration: " + e.getMessage());
+        }
     }
 
     public void reload() {
