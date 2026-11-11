@@ -7,6 +7,7 @@ import dev.lofibox.gui.RedeemGui;
 import dev.lofibox.gui.StatsGui;
 import dev.lofibox.key.KeyTier;
 import dev.lofibox.stats.StatsManager;
+import dev.lofibox.util.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -73,7 +74,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
         if (!sender.hasPermission("lofibox.give")) {
             msg(sender, "no-permission"); return;
         }
-        if (args.length < 3) { sender.sendMessage("§cUsage: /lofibox give <box> <player> [amount]"); return; }
+        if (args.length < 3) { sender.sendMessage(MessageUtil.parse("<red>Usage: /lofibox give \\<box> \\<player> [amount]")); return; }
 
         String boxId    = args[1];
         String target   = args[2];
@@ -94,9 +95,9 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
     }
 
     private void handleOpen(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player player)) { sender.sendMessage("§cPlayers only."); return; }
+        if (!(sender instanceof Player player)) { sender.sendMessage(MessageUtil.parse("<red>Players only.")); return; }
         if (!player.hasPermission("lofibox.use")) { msg(sender, "no-permission"); return; }
-        if (args.length < 2) { sender.sendMessage("§cUsage: /lofibox open <box>"); return; }
+        if (args.length < 2) { sender.sendMessage(MessageUtil.parse("<red>Usage: /lofibox open \\<box>")); return; }
 
         String boxId = args[1];
         MysteryBox box = plugin.getBoxManager().getBox(boxId);
@@ -160,13 +161,13 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
 
     private void handleGiveKey(CommandSender sender, String[] args) {
         if (!sender.hasPermission("lofibox.give")) { msg(sender, "no-permission"); return; }
-        if (args.length < 3) { sender.sendMessage("§cUsage: /lofibox givekey <tier> <player> [amount]"); return; }
+        if (args.length < 3) { sender.sendMessage(MessageUtil.parse("<red>Usage: /lofibox givekey \\<tier> \\<player> [amount]")); return; }
 
         KeyTier tier;
         try {
             tier = KeyTier.valueOf(args[1].toUpperCase());
         } catch (IllegalArgumentException e) {
-            sender.sendMessage("§cUnknown key tier. Valid tiers: wooden, stone, copper, iron, golden, diamond, netherite");
+            sender.sendMessage(MessageUtil.parse("<red>Unknown key tier. Valid tiers: wooden, stone, copper, iron, golden, diamond, netherite"));
             return;
         }
 
@@ -185,9 +186,9 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
     }
 
     private void handlePreview(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player player)) { sender.sendMessage("§cPlayers only."); return; }
+        if (!(sender instanceof Player player)) { sender.sendMessage(MessageUtil.parse("<red>Players only.")); return; }
         if (!player.hasPermission("lofibox.use")) { msg(sender, "no-permission"); return; }
-        if (args.length < 2) { sender.sendMessage("§cUsage: /lofibox preview <box>"); return; }
+        if (args.length < 2) { sender.sendMessage(MessageUtil.parse("<red>Usage: /lofibox preview \\<box>")); return; }
 
         MysteryBox box = plugin.getBoxManager().getBox(args[1]);
         if (box == null) { msg(sender, "unknown-box", "box", args[1]); return; }
@@ -202,7 +203,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
             target = Bukkit.getPlayerExact(args[1]);
             if (target == null) { msg(sender, "unknown-player", "player", args[1]); return; }
         } else {
-            if (!(sender instanceof Player p)) { sender.sendMessage("§cSpecify a player."); return; }
+            if (!(sender instanceof Player p)) { sender.sendMessage(MessageUtil.parse("<red>Specify a player.")); return; }
             if (!p.hasPermission("lofibox.stats") && !p.hasPermission("lofibox.admin")) {
                 msg(sender, "no-permission"); return;
             }
@@ -252,7 +253,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
     // ── Helpers ───────────────────────────────────────────────────────────────
 
     private void handleRedeem(CommandSender sender) {
-        if (!(sender instanceof Player player)) { sender.sendMessage("§cPlayers only."); return; }
+        if (!(sender instanceof Player player)) { sender.sendMessage(MessageUtil.parse("<red>Players only.")); return; }
         if (!player.hasPermission("lofibox.redeem") && !player.hasPermission("lofibox.admin")) {
             msg(sender, "no-permission"); return;
         }
@@ -263,7 +264,7 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
     }
 
     private void handleEditor(CommandSender sender) {
-        if (!(sender instanceof Player player)) { sender.sendMessage("§cPlayers only."); return; }
+        if (!(sender instanceof Player player)) { sender.sendMessage(MessageUtil.parse("<red>Players only.")); return; }
         if (!player.hasPermission("lofibox.editor")) { msg(sender, "no-permission"); return; }
         plugin.getEditorManager().openMainEditor(player);
     }
@@ -274,15 +275,15 @@ public final class LofiBoxCommand implements CommandExecutor, TabCompleter {
 
     private void sendHelp(CommandSender sender) {
         sender.sendMessage(plugin.getMessageConfig().get("list-header"));
-        sender.sendMessage("§7/lofibox give §f<box> <player> [amount]");
-        sender.sendMessage("§7/lofibox givekey §f<tier> <player> [amount]");
-        sender.sendMessage("§7/lofibox open §f<box>");
-        sender.sendMessage("§7/lofibox preview §f<box>");
-        sender.sendMessage("§7/lofibox list");
-        sender.sendMessage("§7/lofibox stats §f[player]");
-        sender.sendMessage("§7/lofibox reload");
-        sender.sendMessage("§7/lofibox editor");
-        sender.sendMessage("§7/lofibox redeem");
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox give <white>\\<box> \\<player> [amount]"));
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox givekey <white>\\<tier> \\<player> [amount]"));
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox open <white>\\<box>"));
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox preview <white>\\<box>"));
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox list"));
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox stats <white>[player]"));
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox reload"));
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox editor"));
+        sender.sendMessage(MessageUtil.parse("<gray>/lofibox redeem"));
     }
 
     private int parseInt(String s, int fallback) {

@@ -16,7 +16,7 @@ public final class PlaceholderHook extends PlaceholderExpansion {
 
     @Override public @NotNull String getIdentifier() { return "lofibox"; }
     @Override public @NotNull String getAuthor()     { return "Lord-Lofi"; }
-    @Override public @NotNull String getVersion()    { return plugin.getDescription().getVersion(); }
+    @Override public @NotNull String getVersion()    { return plugin.getPluginMeta().getVersion(); }
     @Override public boolean persist()               { return true; }
 
     @Override
