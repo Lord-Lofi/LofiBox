@@ -1,0 +1,57 @@
+# CodeQL code scanning ("advanced setup").
+#
+# Runs on every pull request (including Dependabot's), every push to main,
+# and weekly. Every language in the matrix runs on every pull request, so the
+# "Require code scanning results" rule always gets the results it expects.
+#
+# GitHub's CodeQL "default setup" must be OFF for this workflow to upload
+# results. apply-baseline.sh turns it off.
+#
+# Scans the workflow files (actions) and the Java source (java-kotlin).
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "27 5 * * 1" # Mondays, catches newly published queries
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write # upload results
+      actions: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: actions
+            build-mode: none
+          - language: java-kotlin
+            build-mode: none # analyzes the source directly, no Maven build needed
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"
