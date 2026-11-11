@@ -1,0 +1,12 @@
+# Keeps dependencies up to date with weekly pull requests.
+# Add an entry for the project's package manager, for example:
+#   - package-ecosystem: "maven"     (Java / Maven)
+#   - package-ecosystem: "gradle"    (Java / Gradle)
+#   - package-ecosystem: "npm"       (JavaScript)
+#   - package-ecosystem: "pip"       (Python)
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
