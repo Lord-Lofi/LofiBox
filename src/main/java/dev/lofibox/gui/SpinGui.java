@@ -7,13 +7,13 @@ import dev.lofibox.redeem.PendingRewardsManager;
 import dev.lofibox.util.ActionRunner;
 import dev.lofibox.util.ItemUtil;
 import dev.lofibox.util.MessageUtil;
+import dev.lofibox.util.SoundUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -273,10 +273,7 @@ public final class SpinGui extends BukkitRunnable implements InventoryHolder {
     }
 
     private void playSound(String soundName) {
-        try {
-            Sound s = Sound.valueOf(soundName.toUpperCase().replace(".", "_"));
-            player.playSound(player.getLocation(), s, 1f, 1f);
-        } catch (IllegalArgumentException ignored) {}
+        SoundUtil.play(player, soundName);
     }
 
     private void spawnFirework(Location loc) {

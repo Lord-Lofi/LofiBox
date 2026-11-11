@@ -4,7 +4,6 @@ import dev.lofibox.LofiBox;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -32,10 +31,7 @@ public final class ActionRunner {
                 Component sub   = parts.length > 1 ? MessageUtil.parse(parts[1].strip(), player) : Component.empty();
                 player.showTitle(Title.title(title, sub));
             } else if (action.startsWith("[sound]")) {
-                String soundName = action.substring(7).strip().toUpperCase().replace(".", "_");
-                try {
-                    player.playSound(player.getLocation(), Sound.valueOf(soundName), 1f, 1f);
-                } catch (IllegalArgumentException ignored) {}
+                SoundUtil.play(player, action.substring(7).strip());
             } else if (action.startsWith("[command]")) {
                 Bukkit.dispatchCommand(player, action.substring(9).strip());
             } else if (action.startsWith("[console]")) {

@@ -124,7 +124,7 @@ public final class LofiBox extends JavaPlugin {
             getLogger().info("PlaceholderAPI hook registered.");
         }
 
-        getLogger().info("LofiBox v" + getDescription().getVersion() + " enabled.");
+        getLogger().info("LofiBox v" + getPluginMeta().getVersion() + " enabled.");
     }
 
     @Override
