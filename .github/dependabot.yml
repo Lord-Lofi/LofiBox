@@ -1,12 +1,33 @@
 # Keeps dependencies up to date with weekly pull requests.
-# Add an entry for the project's package manager, for example:
-#   - package-ecosystem: "maven"     (Java / Maven)
-#   - package-ecosystem: "gradle"    (Java / Gradle)
-#   - package-ecosystem: "npm"       (JavaScript)
-#   - package-ecosystem: "pip"       (Python)
+#
+# Groups keep the number of pull requests down:
+#   - security: all security fixes for an ecosystem in one pull request
+#   - minor-and-patch: routine minor and patch updates in one pull request
+# Major version updates (for example Paper 1.21 -> 26.x) still get their own
+# pull request, because they can need code changes.
 version: 2
 updates:
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
